@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DCDAA8F2C9AEE4700F56A90 /* BaccaratGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAA8E2C9AEE4700F56A90 /* BaccaratGameApp.swift */; };
+		0DCDAA912C9AEE4700F56A90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAA902C9AEE4700F56A90 /* ContentView.swift */; };
+		0DCDAA932C9AEE4A00F56A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DCDAA922C9AEE4A00F56A90 /* Assets.xcassets */; };
+		0DCDAA962C9AEE4A00F56A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DCDAA952C9AEE4A00F56A90 /* Preview Assets.xcassets */; };
+		0DCDAAA02C9AEE4A00F56A90 /* BaccaratGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAA9F2C9AEE4A00F56A90 /* BaccaratGameTests.swift */; };
+		0DCDAAAA2C9AEE4A00F56A90 /* BaccaratGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAAA92C9AEE4A00F56A90 /* BaccaratGameUITests.swift */; };
+		0DCDAAAC2C9AEE4A00F56A90 /* BaccaratGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAAAB2C9AEE4A00F56A90 /* BaccaratGameUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0DCDAA9C2C9AEE4A00F56A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DCDAA832C9AEE4700F56A90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DCDAA8A2C9AEE4700F56A90;
+			remoteInfo = BaccaratGame;
+		};
+		0DCDAAA62C9AEE4A00F56A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DCDAA832C9AEE4700F56A90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DCDAA8A2C9AEE4700F56A90;
+			remoteInfo = BaccaratGame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0DCDAA8B2C9AEE4700F56A90 /* BaccaratGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaccaratGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DCDAA8E2C9AEE4700F56A90 /* BaccaratGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratGameApp.swift; sourceTree = "<group>"; };
+		0DCDAA902C9AEE4700F56A90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0DCDAA922C9AEE4A00F56A90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0DCDAA952C9AEE4A00F56A90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0DCDAA9B2C9AEE4A00F56A90 /* BaccaratGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaccaratGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DCDAA9F2C9AEE4A00F56A90 /* BaccaratGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratGameTests.swift; sourceTree = "<group>"; };
+		0DCDAAA52C9AEE4A00F56A90 /* BaccaratGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaccaratGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DCDAAA92C9AEE4A00F56A90 /* BaccaratGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratGameUITests.swift; sourceTree = "<group>"; };
+		0DCDAAAB2C9AEE4A00F56A90 /* BaccaratGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0DCDAA882C9AEE4700F56A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DCDAA982C9AEE4A00F56A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DCDAAA22C9AEE4A00F56A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0DCDAA822C9AEE4700F56A90 = {
+			isa = PBXGroup;
+			children = (
+				0DCDAA8D2C9AEE4700F56A90 /* BaccaratGame */,
+				0DCDAA9E2C9AEE4A00F56A90 /* BaccaratGameTests */,
+				0DCDAAA82C9AEE4A00F56A90 /* BaccaratGameUITests */,
+				0DCDAA8C2C9AEE4700F56A90 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0DCDAA8C2C9AEE4700F56A90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DCDAA8B2C9AEE4700F56A90 /* BaccaratGame.app */,
+				0DCDAA9B2C9AEE4A00F56A90 /* BaccaratGameTests.xctest */,
+				0DCDAAA52C9AEE4A00F56A90 /* BaccaratGameUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0DCDAA8D2C9AEE4700F56A90 /* BaccaratGame */ = {
+			isa = PBXGroup;
+			children = (
+				0DCDAA8E2C9AEE4700F56A90 /* BaccaratGameApp.swift */,
+				0DCDAA902C9AEE4700F56A90 /* ContentView.swift */,
+				0DCDAA922C9AEE4A00F56A90 /* Assets.xcassets */,
+				0DCDAA942C9AEE4A00F56A90 /* Preview Content */,
+			);
+			path = BaccaratGame;
+			sourceTree = "<group>";
+		};
+		0DCDAA942C9AEE4A00F56A90 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0DCDAA952C9AEE4A00F56A90 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0DCDAA9E2C9AEE4A00F56A90 /* BaccaratGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				0DCDAA9F2C9AEE4A00F56A90 /* BaccaratGameTests.swift */,
+			);
+			path = BaccaratGameTests;
+			sourceTree = "<group>";
+		};
+		0DCDAAA82C9AEE4A00F56A90 /* BaccaratGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0DCDAAA92C9AEE4A00F56A90 /* BaccaratGameUITests.swift */,
+				0DCDAAAB2C9AEE4A00F56A90 /* BaccaratGameUITestsLaunchTests.swift */,
+			);
+			path = BaccaratGameUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0DCDAA8A2C9AEE4700F56A90 /* BaccaratGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DCDAAAF2C9AEE4A00F56A90 /* Build configuration list for PBXNativeTarget "BaccaratGame" */;
+			buildPhases = (
+				0DCDAA872C9AEE4700F56A90 /* Sources */,
+				0DCDAA882C9AEE4700F56A90 /* Frameworks */,
+				0DCDAA892C9AEE4700F56A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BaccaratGame;
+			productName = BaccaratGame;
+			productReference = 0DCDAA8B2C9AEE4700F56A90 /* BaccaratGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0DCDAA9A2C9AEE4A00F56A90 /* BaccaratGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DCDAAB22C9AEE4A00F56A90 /* Build configuration list for PBXNativeTarget "BaccaratGameTests" */;
+			buildPhases = (
+				0DCDAA972C9AEE4A00F56A90 /* Sources */,
+				0DCDAA982C9AEE4A00F56A90 /* Frameworks */,
+				0DCDAA992C9AEE4A00F56A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0DCDAA9D2C9AEE4A00F56A90 /* PBXTargetDependency */,
+			);
+			name = BaccaratGameTests;
+			productName = BaccaratGameTests;
+			productReference = 0DCDAA9B2C9AEE4A00F56A90 /* BaccaratGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0DCDAAA42C9AEE4A00F56A90 /* BaccaratGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DCDAAB52C9AEE4A00F56A90 /* Build configuration list for PBXNativeTarget "BaccaratGameUITests" */;
+			buildPhases = (
+				0DCDAAA12C9AEE4A00F56A90 /* Sources */,
+				0DCDAAA22C9AEE4A00F56A90 /* Frameworks */,
+				0DCDAAA32C9AEE4A00F56A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0DCDAAA72C9AEE4A00F56A90 /* PBXTargetDependency */,
+			);
+			name = BaccaratGameUITests;
+			productName = BaccaratGameUITests;
+			productReference = 0DCDAAA52C9AEE4A00F56A90 /* BaccaratGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0DCDAA832C9AEE4700F56A90 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					0DCDAA8A2C9AEE4700F56A90 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					0DCDAA9A2C9AEE4A00F56A90 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 0DCDAA8A2C9AEE4700F56A90;
+					};
+					0DCDAAA42C9AEE4A00F56A90 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 0DCDAA8A2C9AEE4700F56A90;
+					};
+				};
+			};
+			buildConfigurationList = 0DCDAA862C9AEE4700F56A90 /* Build configuration list for PBXProject "BaccaratGame" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0DCDAA822C9AEE4700F56A90;
+			productRefGroup = 0DCDAA8C2C9AEE4700F56A90 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0DCDAA8A2C9AEE4700F56A90 /* BaccaratGame */,
+				0DCDAA9A2C9AEE4A00F56A90 /* BaccaratGameTests */,
+				0DCDAAA42C9AEE4A00F56A90 /* BaccaratGameUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0DCDAA892C9AEE4700F56A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DCDAA962C9AEE4A00F56A90 /* Preview Assets.xcassets in Resources */,
+				0DCDAA932C9AEE4A00F56A90 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DCDAA992C9AEE4A00F56A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DCDAAA32C9AEE4A00F56A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0DCDAA872C9AEE4700F56A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DCDAA912C9AEE4700F56A90 /* ContentView.swift in Sources */,
+				0DCDAA8F2C9AEE4700F56A90 /* BaccaratGameApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DCDAA972C9AEE4A00F56A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DCDAAA02C9AEE4A00F56A90 /* BaccaratGameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DCDAAA12C9AEE4A00F56A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DCDAAAA2C9AEE4A00F56A90 /* BaccaratGameUITests.swift in Sources */,
+				0DCDAAAC2C9AEE4A00F56A90 /* BaccaratGameUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0DCDAA9D2C9AEE4A00F56A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0DCDAA8A2C9AEE4700F56A90 /* BaccaratGame */;
+			targetProxy = 0DCDAA9C2C9AEE4A00F56A90 /* PBXContainerItemProxy */;
+		};
+		0DCDAAA72C9AEE4A00F56A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0DCDAA8A2C9AEE4700F56A90 /* BaccaratGame */;
+			targetProxy = 0DCDAAA62C9AEE4A00F56A90 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0DCDAAAD2C9AEE4A00F56A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0DCDAAAE2C9AEE4A00F56A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0DCDAAB02C9AEE4A00F56A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BaccaratGame/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = FaheemAhmed5525.BaccaratGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0DCDAAB12C9AEE4A00F56A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BaccaratGame/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = FaheemAhmed5525.BaccaratGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0DCDAAB32C9AEE4A00F56A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = FaheemAhmed5525.BaccaratGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaccaratGame.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BaccaratGame";
+			};
+			name = Debug;
+		};
+		0DCDAAB42C9AEE4A00F56A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = FaheemAhmed5525.BaccaratGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaccaratGame.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BaccaratGame";
+			};
+			name = Release;
+		};
+		0DCDAAB62C9AEE4A00F56A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = FaheemAhmed5525.BaccaratGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BaccaratGame;
+			};
+			name = Debug;
+		};
+		0DCDAAB72C9AEE4A00F56A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = FaheemAhmed5525.BaccaratGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BaccaratGame;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0DCDAA862C9AEE4700F56A90 /* Build configuration list for PBXProject "BaccaratGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DCDAAAD2C9AEE4A00F56A90 /* Debug */,
+				0DCDAAAE2C9AEE4A00F56A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DCDAAAF2C9AEE4A00F56A90 /* Build configuration list for PBXNativeTarget "BaccaratGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DCDAAB02C9AEE4A00F56A90 /* Debug */,
+				0DCDAAB12C9AEE4A00F56A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DCDAAB22C9AEE4A00F56A90 /* Build configuration list for PBXNativeTarget "BaccaratGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DCDAAB32C9AEE4A00F56A90 /* Debug */,
+				0DCDAAB42C9AEE4A00F56A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DCDAAB52C9AEE4A00F56A90 /* Build configuration list for PBXNativeTarget "BaccaratGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DCDAAB62C9AEE4A00F56A90 /* Debug */,
+				0DCDAAB72C9AEE4A00F56A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0DCDAA832C9AEE4700F56A90 /* Project object */;
+}

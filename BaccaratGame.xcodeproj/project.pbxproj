@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0DCDAA8F2C9AEE4700F56A90 /* BaccaratGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAA8E2C9AEE4700F56A90 /* BaccaratGameApp.swift */; };
-		0DCDAA912C9AEE4700F56A90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAA902C9AEE4700F56A90 /* ContentView.swift */; };
+		0DCDAA912C9AEE4700F56A90 /* BaccaratView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAA902C9AEE4700F56A90 /* BaccaratView.swift */; };
 		0DCDAA932C9AEE4A00F56A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DCDAA922C9AEE4A00F56A90 /* Assets.xcassets */; };
 		0DCDAA962C9AEE4A00F56A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DCDAA952C9AEE4A00F56A90 /* Preview Assets.xcassets */; };
 		0DCDAAA02C9AEE4A00F56A90 /* BaccaratGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAA9F2C9AEE4A00F56A90 /* BaccaratGameTests.swift */; };
 		0DCDAAAA2C9AEE4A00F56A90 /* BaccaratGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAAA92C9AEE4A00F56A90 /* BaccaratGameUITests.swift */; };
 		0DCDAAAC2C9AEE4A00F56A90 /* BaccaratGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAAAB2C9AEE4A00F56A90 /* BaccaratGameUITestsLaunchTests.swift */; };
+		0DCDAAB92C9AEFBF00F56A90 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAAB82C9AEFBF00F56A90 /* Player.swift */; };
+		0DCDAB2B2C9AF1BE00F56A90 /* BaccaratModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAB2A2C9AF1BE00F56A90 /* BaccaratModel.swift */; };
+		0DCDAB2D2C9AF2A900F56A90 /* BaccartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAB2C2C9AF2A900F56A90 /* BaccartViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		0DCDAA8B2C9AEE4700F56A90 /* BaccaratGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaccaratGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DCDAA8E2C9AEE4700F56A90 /* BaccaratGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratGameApp.swift; sourceTree = "<group>"; };
-		0DCDAA902C9AEE4700F56A90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0DCDAA902C9AEE4700F56A90 /* BaccaratView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratView.swift; sourceTree = "<group>"; };
 		0DCDAA922C9AEE4A00F56A90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DCDAA952C9AEE4A00F56A90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0DCDAA9B2C9AEE4A00F56A90 /* BaccaratGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaccaratGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +47,9 @@
 		0DCDAAA52C9AEE4A00F56A90 /* BaccaratGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaccaratGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DCDAAA92C9AEE4A00F56A90 /* BaccaratGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratGameUITests.swift; sourceTree = "<group>"; };
 		0DCDAAAB2C9AEE4A00F56A90 /* BaccaratGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0DCDAAB82C9AEFBF00F56A90 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		0DCDAB2A2C9AF1BE00F56A90 /* BaccaratModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratModel.swift; sourceTree = "<group>"; };
+		0DCDAB2C2C9AF2A900F56A90 /* BaccartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccartViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +101,12 @@
 			isa = PBXGroup;
 			children = (
 				0DCDAA8E2C9AEE4700F56A90 /* BaccaratGameApp.swift */,
-				0DCDAA902C9AEE4700F56A90 /* ContentView.swift */,
+				0DCDAA902C9AEE4700F56A90 /* BaccaratView.swift */,
 				0DCDAA922C9AEE4A00F56A90 /* Assets.xcassets */,
 				0DCDAA942C9AEE4A00F56A90 /* Preview Content */,
+				0DCDAAB82C9AEFBF00F56A90 /* Player.swift */,
+				0DCDAB2A2C9AF1BE00F56A90 /* BaccaratModel.swift */,
+				0DCDAB2C2C9AF2A900F56A90 /* BaccartViewModel.swift */,
 			);
 			path = BaccaratGame;
 			sourceTree = "<group>";
@@ -257,7 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DCDAA912C9AEE4700F56A90 /* ContentView.swift in Sources */,
+				0DCDAB2B2C9AF1BE00F56A90 /* BaccaratModel.swift in Sources */,
+				0DCDAB2D2C9AF2A900F56A90 /* BaccartViewModel.swift in Sources */,
+				0DCDAA912C9AEE4700F56A90 /* BaccaratView.swift in Sources */,
+				0DCDAAB92C9AEFBF00F56A90 /* Player.swift in Sources */,
 				0DCDAA8F2C9AEE4700F56A90 /* BaccaratGameApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

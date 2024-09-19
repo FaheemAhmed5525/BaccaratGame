@@ -11,7 +11,7 @@ import SwiftUI
 struct BaccaratGameApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BaccaratView()
         }
     }
 }

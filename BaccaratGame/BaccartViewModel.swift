@@ -6,11 +6,38 @@
 //
 
 import Foundation
+import SwiftUI
 
 class BaccaratViewModel: ObservableObject {
     
     static var game = BaccaratModel()
     
+    static var cardsOffset: [CGSize] = [.zero, .zero, .zero, .zero, .zero, .zero]
+    static var discardPilePosition: CGPoint = .zero
+    static var shoeStackPosition: CGPoint = .zero
+    
+//    // MARK: - animation
+//    func changeCardOffset() {
+//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
+//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
+//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
+//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
+//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
+//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
+//        
+//    }
+    
+//    @State private var offset: CGSize = .zero
+//    public var Offset: CGSize {
+//        get {
+//            return offset
+//        }
+//        set {
+//            offset = newValue
+//        }
+//    }
+//    
+//
     
     static func drawCards() {
         game.drawCards()
@@ -26,25 +53,25 @@ class BaccaratViewModel: ObservableObject {
     
     
     // image names of cards to be presend to the user
-    @Published var playerCardImage1 = "Card0"
-    @Published var playerCardImage2 = "Card0"
-    @Published var playerCardImage3 = "Card0"
+    @Published var playerCard1 = BaccaratViewModel.game.atHandCard[0]
+    @Published var playerCard2 = BaccaratViewModel.game.atHandCard[1]
+    @Published var playerCard3 = BaccaratViewModel.game.atHandCard[2]
     
-    @Published var bankerCardImage1 = "Card0"
-    @Published var bankerCardImage2 = "Card0"
-    @Published var bankerCardImage3 = "Card0"
+    @Published var bankerCard1 = BaccaratViewModel.game.atHandCard[3]
+    @Published var bankerCard2 = BaccaratViewModel.game.atHandCard[4]
+    @Published var bankerCard3 = BaccaratViewModel.game.atHandCard[5]
     
     
     /// function UpdateCardImage assigns new new images to the image object to update UI
     func updateCardImage() {
         
-        playerCardImage1 = "Card\(BaccaratViewModel.game.playerHandCard1.cardValue)"
-        playerCardImage2 = "Card\(BaccaratViewModel.game.playerHandCard2.cardValue)"
-        playerCardImage3 = "Card\(BaccaratViewModel.game.playerHandCard3.cardValue)"
+        playerCard1 = BaccaratViewModel.game.atHandCard[0]
+        playerCard2 = BaccaratViewModel.game.atHandCard[1]
+        playerCard3 = BaccaratViewModel.game.atHandCard[2]
         
-        bankerCardImage1 = "Card\(BaccaratViewModel.game.bankerHandCard1.cardValue)"
-        bankerCardImage2 = "Card\(BaccaratViewModel.game.bankerHandCard2.cardValue)"
-        bankerCardImage3 = "Card\(BaccaratViewModel.game.bankerHandCard3.cardValue)"
+        bankerCard1 = BaccaratViewModel.game.atHandCard[3]
+        bankerCard2 = BaccaratViewModel.game.atHandCard[4]
+        bankerCard3 = BaccaratViewModel.game.atHandCard[5]
     }
     
 }

@@ -35,10 +35,16 @@ enum CardsStates {
     case faceUp
 }
 
+enum CardsPositions {
+    case onShoeStack
+    case onHand
+    case onDiscardPile
+}
+
 struct Card {
     var cardValue: Int
     var cardState: CardsStates
-    
+    var cardPosition: CardsPositions = .onShoeStack
     init() {
         self.cardValue = 0
         self.cardState = CardsStates.notShown
@@ -48,4 +54,8 @@ struct Card {
         self.cardValue = cardValue
         self.cardState = cardState
     }
+    
+    
 }
+
+

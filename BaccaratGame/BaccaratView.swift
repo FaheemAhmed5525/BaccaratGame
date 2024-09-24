@@ -14,8 +14,9 @@ struct BaccaratView: View {
     // interaction object with Modol view
     @ObservedObject var gameView = BaccaratViewModel()
     
-    
-    
+    @State var cardsOffset: [CGSize] = [.zero, .zero, .zero, .zero, .zero, .zero]
+    @State var discardPilePosition: CGPoint = .zero
+    @State var shoeStackPosition: CGPoint = .zero
     
     var body: some View {
                 
@@ -46,11 +47,28 @@ struct BaccaratView: View {
                     VStack(alignment: .center) {
                         HStack(alignment: .top) {
                             // DiscardPile
-                            DiscardPile(width: width/10, height: height/4)
-                
+                            GeometryReader { geometry in
+                                
+                                
+                                DiscardPile(width: width/10, height: height/4)
+                                    .background(GeometryReader { box in
+                                        Color.clear.onAppear {
+                                            BaccaratViewModel.discardPilePosition = box.frame(in: .global).origin
+                                        }
+                                    }
+                                    )
+                                
+                            }
+                            
                             CasinoStack(width: width, height: height)
                             // ShoeStack
                             ShoeStackView(width: width/5, height: height/4)
+                                .background(GeometryReader { box in
+                                    Color.clear.onAppear {
+                                        BaccaratViewModel.shoeStackPosition = box.frame(in: .global).origin
+                                    }
+                                }
+                                )
                         }
                             .padding(24)
                         
@@ -61,21 +79,12 @@ struct BaccaratView: View {
                             PlayerHandView(width: width/5, height: height/4)
                                 .overlay(
                                     HStack(alignment: .center, spacing: -width/10) {
-                                        Image(gameView.playerCardImage3)
-                                             .resizable()
-                                             .frame(width: width/10, height: height/4)
-                                             .cornerRadius(8)
-                                             .padding(.leading, 24)
-                                        Image(gameView.playerCardImage2)
-                                              .resizable()
-                                              .frame(width: width/10, height: height/4)
-                                              .cornerRadius(8)
-                                              .padding(.leading, 24)
-                                        Image(gameView.playerCardImage1)
-                                              .resizable()
-                                              .frame(width: width/10, height: height/4)
-                                              .cornerRadius(8)
-                                              .padding(.leading, 24)
+                                        CardView(cardIndex: 0, card: gameView.playerCard1, width: width/10, height: height/4)
+                                            //.offset(cardsOffset[0])
+                                        CardView(cardIndex: 1, card: gameView.playerCard2, width: width/10, height: height/4)
+                                           // .offset(cardsOffset[0])
+                                        CardView(cardIndex: 2, card: gameView.playerCard3, width: width/10, height: height/4)
+                                          //  .offset(cardsOffset[0])
                                     }
                                 )
                             
@@ -83,26 +92,16 @@ struct BaccaratView: View {
                             BankerHandView(width: width/5, height: height/4)
                                 .overlay (
                                     HStack(alignment: .center, spacing: -width/10) {
-                                        Image(gameView.bankerCardImage1)
-                                             .resizable()
-                                             .frame(width: width/10, height: height/4)
-                                             .cornerRadius(8)
-                                             .padding(.leading, 24)
-                                        Image(gameView.bankerCardImage2)
-                                              .resizable()
-                                              .frame(width: width/10, height: height/4)
-                                              .cornerRadius(8)
-                                              .padding(.leading, 24)
-                                        Image(gameView.bankerCardImage1)
-                                              .resizable()
-                                              .frame(width: width/10, height: height/4)
-                                              .cornerRadius(8)
-                                              .padding(.leading, 24)
+                                        CardView(cardIndex: 3, card: gameView.bankerCard1, width: width/10, height: height/4)
+                                           // .offset(cardsOffset[0])
+                                        CardView(cardIndex: 4, card: gameView.bankerCard2, width: width/10, height: height/4)
+                                           // .offset(cardsOffset[0])
+                                        CardView(cardIndex: 5, card: gameView.bankerCard3, width: width/10, height: height/4)
+                                           // .offset(cardsOffset[0])
                                     }
                                 )
-
-                            
                         }
+                        
                         //Spacer(minLength: 00)
                         Spacer()
                         BettingAmountChangeButtons
@@ -235,7 +234,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct DiscardPile: View {
     let width: CGFloat
     let height: CGFloat
-    var body: some View {            CardBackView(width: width, height: height)
+    var body: some View {
+            
+            CardBackView(width: width, height: height)
                 .padding(.trailing, 36)
     }
 }
@@ -431,3 +432,21 @@ struct PlayerAreaView: View {
     }
 }
 
+
+
+struct CardView: View {
+    let cardIndex: Int
+    let card: Card
+    let width: CGFloat
+    let height: CGFloat
+    
+    var body: some View {
+        Image(card.cardState == CardsStates.faceUp ? "Card\(card.cardValue)" : "CardBack")
+            .resizable()
+            .frame(width: width, height: height)
+            .cornerRadius(8)
+            .offset(BaccaratViewModel.cardsOffset[cardIndex])
+            .padding(.leading, 24)
+    }
+
+}

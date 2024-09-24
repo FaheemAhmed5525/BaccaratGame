@@ -18,13 +18,9 @@ struct BaccaratModel {
     
     
     /// These var will be used for calculation of  resulat and also to show card on screen in Player's and Banker's hand
-    var playerHandCard1 = Card()
-    var playerHandCard2 = Card()
-    var playerHandCard3 = Card()
+    var atHandCard = Array(repeating: Card(), count: 6)
     
-    var bankerHandCard1 = Card()
-    var bankerHandCard2 = Card()
-    var bankerHandCard3 = Card()
+    
     
     
     
@@ -140,27 +136,38 @@ struct BaccaratModel {
         
         //get a unused card
         //place first card on player hand
-        playerHandCard1 = drawNewCard()
+        atHandCard[0] = drawNewCard()
+        atHandCard[0].cardPosition = .onHand
+        
         
         //get a unused card
         //place first card on player hand
-        playerHandCard2 = drawNewCard()
+        atHandCard[1] = drawNewCard()
+        atHandCard[1].cardPosition = .onHand
+        
+//        //get a empty card
+//        //place third card on player hand
+//        atHandCard[3] = Card()
         
         //get a unused card
         //place second card on banker hand
-        bankerHandCard1 = drawNewCard()
+        atHandCard[3] = drawNewCard()
+        atHandCard[3].cardPosition = .onHand
         
         //get a unused card
         //place second card on banker hand
-        bankerHandCard2 = drawNewCard()
+        atHandCard[4] = drawNewCard()
+        atHandCard[4].cardPosition = .onHand
         
         
-        print("Player Card 1: \(playerHandCard1.cardValue)")
-        print("Player Card 2: \(playerHandCard2.cardValue)")
-        print("Player Card 3: \(playerHandCard3.cardValue)")
-        print("Banker Card 1: \(bankerHandCard1.cardValue)")
-        print("Banker Card 2: \(bankerHandCard2.cardValue)")
-        print("Banker Card 3: \(bankerHandCard3.cardValue)")
+        print("Player Card 1: \(atHandCard[0].cardValue)")
+        print("Player Card 2: \(atHandCard[1].cardValue)")
+        print("Player Card 3: \(atHandCard[2].cardValue)")
+        print("Banker Card 1: \(atHandCard[3].cardValue)")
+        print("Banker Card 2: \(atHandCard[4].cardValue)")
+        print("Banker Card 3: \(atHandCard[5].cardValue)")
+        
+        
         
         dealCards()
     }
@@ -189,8 +196,8 @@ struct BaccaratModel {
     
     /// dealCards  function is executed after the initial cards are drawn
     mutating func dealCards() {
-        var playerTotal: Int = ((playerHandCard1.cardValue % 13) + (playerHandCard2.cardValue % 13)) % 10
-        var bankerTotal: Int = ((bankerHandCard1.cardValue % 13) + (bankerHandCard2.cardValue % 13)) % 10
+        var playerTotal: Int = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13)) % 10
+        var bankerTotal: Int = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13)) % 10
         
         //if the care is tie
         if playerTotal == bankerTotal {
@@ -215,11 +222,12 @@ struct BaccaratModel {
         else if playerTotal <= 5 {
             
             //draws a third card
-            playerHandCard3 = drawNewCard()
-            playerTotal = ((playerHandCard1.cardValue % 13) + (playerHandCard2.cardValue % 13) + (playerHandCard3.cardValue) % 13) % 10
+            atHandCard[2] = drawNewCard()
+            atHandCard[2].cardPosition = .onHand
+            playerTotal = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13) + (atHandCard[2].cardValue) % 13) % 10
             
         }
-        let playerThirdCard = ((playerHandCard2.cardValue) % 13) % 10
+        let playerThirdCard = ((atHandCard[2].cardValue) % 13) % 10
         
         //Condition when banker draws third card
         if (bankerTotal >= 0 && bankerTotal <= 2) ||
@@ -228,9 +236,10 @@ struct BaccaratModel {
             (bankerTotal == 5 && (playerThirdCard >= 4 && playerThirdCard <= 7)) ||
             (bankerTotal == 6 && (playerThirdCard == 6 || playerThirdCard == 7)) {
             
-            bankerHandCard3 = drawNewCard()
+            atHandCard[5] = drawNewCard()
+            atHandCard[5].cardPosition = .onHand
             
-            bankerTotal = ((bankerHandCard1.cardValue % 13) + (bankerHandCard2.cardValue % 13) + (bankerHandCard3.cardValue % 13)) % 10
+            bankerTotal = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13) + (atHandCard[5].cardValue % 13)) % 10
         }
         
         //if the case is tie

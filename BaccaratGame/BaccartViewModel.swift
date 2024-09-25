@@ -12,7 +12,7 @@ class BaccaratViewModel: ObservableObject {
     
     var game = BaccaratModel()
     
-    static var cardsOffset: [CGSize] = [.zero, .zero, .zero, .zero, .zero, .zero]
+    static var cardsOffset: [CGPoint] = [.zero, .zero, .zero, .zero, .zero, .zero]
     static var discardPilePosition: CGPoint = .zero
     static var shoeStackPosition: CGPoint = .zero
     

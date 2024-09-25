@@ -72,6 +72,11 @@ struct BaccaratView: View {
                                 HStack {
                                     Button("Start") {
                                         gameView.drawCards()
+                                        findOffsetToShoe()
+                                        withAnimation {
+                                            
+                                            animateCardsToHands()
+                                        }
                                     }
                                     Button("Clear") {
                                         gameView.clearHands()
@@ -86,7 +91,7 @@ struct BaccaratView: View {
                             ShoeStackView(width: width/5, height: height/4)
                                 .background(GeometryReader { box in
                                     Color.clear.onAppear {
-                                        BaccaratViewModel.shoeStackPosition = box.frame(in: .global).origin
+                                        BaccaratViewModel.shoeStackPosition = CGPoint(x: box.frame(in: .global).minX, y: box.frame(in: .global).minY)
                                     }
                                 }
                                 )
@@ -103,12 +108,14 @@ struct BaccaratView: View {
                                 .overlay(
                                     HStack(alignment: .center, spacing: -width/10) {
                                         CardView(cardIndex: 0, card: gameView.playerCard1, width: width/10, height: height/4)
+                                            .offset(cardsOffset[0])
                                         
-                                            //.offset(cardsOffset[0])
+                                        
                                         CardView(cardIndex: 1, card: gameView.playerCard2, width: width/10, height: height/4)
-                                           // .offset(cardsOffset[0])
+                                            .offset(cardsOffset[1])
+                                        
                                         CardView(cardIndex: 2, card: gameView.playerCard3, width: width/10, height: height/4)
-                                          //  .offset(cardsOffset[0])
+                                            .offset(cardsOffset[2])
                                     }
                                 )
                             
@@ -117,11 +124,11 @@ struct BaccaratView: View {
                                 .overlay (
                                     HStack(alignment: .center, spacing: -width/10) {
                                         CardView(cardIndex: 3, card: gameView.bankerCard1, width: width/10, height: height/4)
-                                           // .offset(cardsOffset[0])
+                                            .offset(cardsOffset[3])
                                         CardView(cardIndex: 4, card: gameView.bankerCard2, width: width/10, height: height/4)
-                                           // .offset(cardsOffset[0])
+                                            .offset(cardsOffset[4])
                                         CardView(cardIndex: 5, card: gameView.bankerCard3, width: width/10, height: height/4)
-                                           // .offset(cardsOffset[0])
+                                            .offset(cardsOffset[5])
                                     }
                                 )
                         }
@@ -182,7 +189,7 @@ struct BaccaratView: View {
                     
                     //for Player 4
                     PlayerAreaView(forPlayer: 4, center: arcCenter, radius: playerArcRadius, startAngle: .degrees(125), endAngle: .degrees(150))
-                    
+ 
                 }
                     .frame(width: width, height: height)
                     .padding(12)
@@ -229,6 +236,43 @@ struct BaccaratView: View {
             }
         }
         .padding(20)
+    }
+    
+    func findOffsetToShoe() {
+        
+        cardsOffset[0] = CGSize(width: BaccaratViewModel.shoeStackPosition.x,
+                                height: -BaccaratViewModel.shoeStackPosition.y)
+        
+        cardsOffset[1] = CGSize(width: BaccaratViewModel.shoeStackPosition.x,
+                                height: -BaccaratViewModel.shoeStackPosition.y)
+        
+        cardsOffset[2] = CGSize(width: BaccaratViewModel.shoeStackPosition.x,
+                                height: -BaccaratViewModel.shoeStackPosition.y)
+        
+        cardsOffset[3] = CGSize(width: BaccaratViewModel.shoeStackPosition.x,
+                                height: -BaccaratViewModel.shoeStackPosition.y)
+        
+        cardsOffset[4] = CGSize(width: BaccaratViewModel.shoeStackPosition.x,
+                                height: -BaccaratViewModel.shoeStackPosition.y)
+        
+        cardsOffset[5] = CGSize(width: BaccaratViewModel.shoeStackPosition.x,
+                                height: -BaccaratViewModel.shoeStackPosition.y)
+    }
+    
+    
+    
+    func animateCardsToHands() {
+        cardsOffset[0] = CGSize(width: 0, height: 0)
+        
+        cardsOffset[1] = CGSize(width: 0, height: 0)
+        
+        cardsOffset[2] = CGSize(width: 0, height: 0)
+        
+        cardsOffset[3] = CGSize(width: 0, height: 0)
+       
+        cardsOffset[4] = CGSize(width: 0, height: 0)
+        
+        cardsOffset[5] = CGSize(width: 0, height: 0)
     }
 }
 
@@ -456,9 +500,14 @@ struct CardView: View {
         Image(card.cardState == CardsStates.faceHidden ? "CardBack" : (card.cardState == CardsStates.faceUp ? "Card\(card.cardValue)" : "Card51"))
             .resizable()
             .frame(width: width, height: height)
+            .background(GeometryReader { cardBox in
+                Color.clear.onAppear {
+                    BaccaratViewModel.cardsOffset[cardIndex] = CGPoint(x: cardBox.frame(in: .global).minX, y: cardBox.frame(in: .global).minY)
+                }
+            })
             .cornerRadius(8)
-            .offset(card.cardPosition == CardsPositions.onShoeStack ? CGSize(width: 100, height: -100) : CGSize(width: -100, height: -100))
             .padding(.leading, 24)
+            .zIndex(3)
     }
 
 }

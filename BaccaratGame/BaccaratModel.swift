@@ -13,6 +13,7 @@ struct BaccaratModel {
     var selectedStack: betStacks = betStacks.noStack  //no stack is selected by default
     
     var bettingAmount: Int = 0
+    let emptyCard = Card()
     
     var card: [Int: Bool] = Dictionary(uniqueKeysWithValues: (1...52).map {($0, false) })
     
@@ -255,6 +256,14 @@ struct BaccaratModel {
         // banker won
         else {
             handleBankerWin()
+        }
+        
+    }
+    
+    // Clear the handscard
+    mutating func clearHands() {
+        for index in 0..<6 {
+            atHandCard[0] = emptyCard
         }
         
     }

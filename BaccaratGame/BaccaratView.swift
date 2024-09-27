@@ -18,6 +18,7 @@ struct BaccaratView: View {
     @State var cardsPosition: [CGPoint] = [.zero, .zero, .zero, .zero, .zero, .zero]
     @State var discardPilePosition: CGPoint = .zero
     @State var shoeStackPosition: CGPoint = .zero
+    @State var bettingAmount = 0
     
     
     var body: some View {
@@ -53,12 +54,7 @@ struct BaccaratView: View {
                                 
                                 
                                 DiscardPile(width: width/10, height: height/4)
-                                    .background(GeometryReader { box in
-                                        Color.clear.onAppear {
-                                            BaccaratViewModel.discardPilePosition = box.frame(in: .local).origin
-                                        }
-                                    }
-                                    )
+                                    
                                 
                             }
                             
@@ -93,12 +89,7 @@ struct BaccaratView: View {
                             //CasinoStack(width: width, height: height)
                             // ShoeStack
                             ShoeStackView(width: width/5, height: height/4)
-                                .background(GeometryReader { box in
-                                    Color.clear.onAppear {
-                                        BaccaratViewModel.shoeStackPosition = CGPoint(x: (box.frame(in: .local).minX), y: box.frame(in: .global).minY)
-                                    }
-                                }
-                                )
+                                
                                 
                         }
                             .padding(24)
@@ -125,11 +116,11 @@ struct BaccaratView: View {
                                 .overlay (
                                     HStack(alignment: .center, spacing: -width/10) {
                                         CardView(cardIndex: 3, card: gameView.bankerCard1, width: width/10, height: height/4)
-                                            //.position(cardsPosition[3])
+                                            .position(cardsPosition[3])
                                         CardView(cardIndex: 4, card: gameView.bankerCard2, width: width/10, height: height/4)
-                                           // .position(cardsPosition[4])
+                                            .position(cardsPosition[4])
                                         CardView(cardIndex: 5, card: gameView.bankerCard3, width: width/10, height: height/4)
-                                            //.position(cardsPosition[5])
+                                            .position(cardsPosition[5])
                                     }
                                 )
                         }
@@ -149,22 +140,37 @@ struct BaccaratView: View {
                     
                     // For player 1
                     TieAreaView(forPlayer: 1, center: arcCenter, radius: tieArcRadius, startAngle: .degrees(30), endAngle: .degrees(55))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 1, bettingStack: betStacks.tie)
+                        }
                     
                     // for Payer 2
                     TieAreaView(forPlayer: 2, center: arcCenter, radius: tieArcRadius, startAngle: .degrees(60), endAngle: .degrees(85))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 2, bettingStack: betStacks.tie)
+                        }
                     
                     
                     // For Player 3
                     TieAreaView(forPlayer: 3, center: arcCenter, radius: tieArcRadius, startAngle: .degrees(95), endAngle: .degrees(120))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 3, bettingStack: betStacks.tie)
+                        }
                     
                     
                     // for Player 4
                     TieAreaView(forPlayer: 4, center: arcCenter, radius: tieArcRadius, startAngle: .degrees(125), endAngle: .degrees(150))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 4, bettingStack: betStacks.tie)
+                        }
                     
                     // Banker betting area
                     let bankerArcRadius = CGFloat(height * 11/12)
                     //for Player 1
                     BankerAreaView(forPlayer: 1, center: arcCenter, radius: bankerArcRadius, startAngle: .degrees(30), endAngle: .degrees(55))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 3, bettingStack: betStacks.tie)
+                        }
                     
                     //for Player 2
                     BankerAreaView(forPlayer: 2, center: arcCenter, radius: bankerArcRadius, startAngle: .degrees(60), endAngle: .degrees(85))
@@ -204,15 +210,19 @@ struct BaccaratView: View {
         return HStack {
             VStack {
                 Button("+5$") {
+                    updateBettingAmount()
                     gameView.changeBettingAmount(5)
                 }
                 Button("+20$") {
+                    updateBettingAmount()
                     gameView.changeBettingAmount(20)
                 }
                 Button("+100$") {
+                    updateBettingAmount()
                     gameView.changeBettingAmount(100)
                 }
                 Button("+1000$") {
+                    updateBettingAmount()
                     gameView.changeBettingAmount(1000)
                 }
             }
@@ -221,15 +231,19 @@ struct BaccaratView: View {
 
             VStack {
                 Button("-5$") {
+                    updateBettingAmount()
                     gameView.changeBettingAmount(-5)
                 }
                 Button("-20$") {
+                    updateBettingAmount()
                     gameView.changeBettingAmount(-20)
                 }
                 Button("-100$") {
+                    updateBettingAmount()
                     gameView.changeBettingAmount(-100)
                 }
                 Button("-1000$") {
+                    updateBettingAmount()
                     gameView.changeBettingAmount(-1000)
                 }
             }
@@ -249,26 +263,30 @@ struct BaccaratView: View {
     }
     
     func animateCardsToDiscardPile() {
-        gameView.playerCard1.cardPosition = CardsPositions.onDiscardPile
-        gameView.playerCard2.cardPosition = CardsPositions.onDiscardPile
-        gameView.playerCard3.cardPosition = CardsPositions.onDiscardPile
-        gameView.bankerCard1.cardPosition = CardsPositions.onDiscardPile
-        gameView.bankerCard2.cardPosition = CardsPositions.onDiscardPile
-        gameView.bankerCard3.cardPosition = CardsPositions.onDiscardPile
+        cardsPosition[0] = BaccaratViewModel.discardPilePosition
+        cardsPosition[1] = BaccaratViewModel.discardPilePosition
+        cardsPosition[2] = BaccaratViewModel.discardPilePosition
+        cardsPosition[3] = BaccaratViewModel.discardPilePosition
+        cardsPosition[4] = BaccaratViewModel.discardPilePosition
+        cardsPosition[5] = BaccaratViewModel.discardPilePosition
 
     }
     
     func animateCardsToHands() {
 
         cardsPosition[0] = BaccaratViewModel.cardsPosition[0]
-        cardsPosition[0] = BaccaratViewModel.cardsPosition[1]
-        cardsPosition[0] = BaccaratViewModel.cardsPosition[2]
-        cardsPosition[0] = BaccaratViewModel.cardsPosition[3]
-        cardsPosition[0] = BaccaratViewModel.cardsPosition[4]
-        cardsPosition[0] = BaccaratViewModel.cardsPosition[5]
+        cardsPosition[1] = BaccaratViewModel.cardsPosition[1]
+        cardsPosition[2] = BaccaratViewModel.cardsPosition[2]
+        cardsPosition[3] = BaccaratViewModel.cardsPosition[3]
+        cardsPosition[4] = BaccaratViewModel.cardsPosition[4]
+        cardsPosition[5] = BaccaratViewModel.cardsPosition[5]
 
     }
     
+    ///func updateBettingAmount updates the betting amount to show
+    func updateBettingAmount() {
+        bettingAmount = gameView.getBettingAmount()
+    }
 }
 
 
@@ -298,6 +316,15 @@ struct DiscardPile: View {
             
             CardBackView(width: width, height: height)
                 .padding(.trailing, 36)
+                .background(GeometryReader { box in
+                    Color.clear.onAppear {
+                        if !BaccaratViewModel.isDiscardPositionSet {
+                            BaccaratViewModel.discardPilePosition = box.frame(in: .local).origin
+                            BaccaratViewModel.isDiscardPositionSet = true
+                        }
+                    }
+                }
+                )
     }
 }
 
@@ -316,20 +343,6 @@ struct ChipStackView: View {
     }
 }
 
-///// CosinoStack constains views that are placed in front of Casino
-//struct CasinoStack: View {
-//    let width: CGFloat
-//    let height: CGFloat
-//    
-//    var body: some View {
-//        VStack {
-//            
-//            
-//            
-//            
-//        }
-//    }
-//}
 
 
 
@@ -344,6 +357,15 @@ struct ShoeStackView: View {
                 .stroke(Color.black)
                 .frame(width: width, height: height)
                 .padding(.leading, 24)
+                .background(GeometryReader { box in
+                    Color.clear.onAppear {
+                        if !BaccaratViewModel.isShoeStackPositionSet {
+                            BaccaratViewModel.shoeStackPosition = CGPoint(x: (box.frame(in: .local).minX), y: box.frame(in: .global).minY)
+                            BaccaratViewModel.isShoeStackPositionSet = true
+                        }
+                    }
+                }
+                )
                 .overlay(
                     HStack(alignment: .center, spacing: -width/2) {
                         CardBackView(width: width/2, height: height)
@@ -448,9 +470,6 @@ struct BankerAreaView: View {
         }
         .strokedPath(StrokeStyle(lineCap: .round))
         .stroke(Color(UIColor.systemGray4), lineWidth: 32)
-        .onTapGesture {
-            print("Player \(forPlayer) bets on Banker")
-        }
     }
 }
 
@@ -476,10 +495,6 @@ struct PlayerAreaView: View {
         .strokedPath(StrokeStyle(lineCap: .round))
         .stroke(Color(UIColor.systemGray6), lineWidth: 32)
 
-
-        .onTapGesture {
-            print("Player \(forPlayer) bets on Player")
-        }
     }
 }
 
@@ -497,18 +512,18 @@ struct CardView: View {
             .frame(width: width, height: height)
             .background(GeometryReader { cardBox in
                 Color.clear.onAppear {
-                    
-                    BaccaratViewModel.cardsPosition[cardIndex] = CGPoint(x: cardBox.frame(in: .global).minX - cardBox.frame(in: .global).width, y: cardBox.frame(in: .local).minY - cardBox.frame(in: .global).height)
+                    if !BaccaratViewModel.isDefaultPositionSet[cardIndex] {
+                        BaccaratViewModel.isDefaultPositionSet[cardIndex] = true
+                        BaccaratViewModel.cardsPosition[cardIndex] = CGPoint(x: cardBox.frame(in: .global).minX - cardBox.frame(in: .global).width, y: cardBox.frame(in: .local).minY - cardBox.frame(in: .local).height)
+                        
+                    }
                 }
             })
             .cornerRadius(8)
             .padding(.leading, 24)
             .zIndex(3)
-            .position(card.cardPosition == CardsPositions.onShoeStack ? BaccaratViewModel.shoeStackPosition : (card.cardPosition == CardsPositions.onDiscardPile ? BaccaratViewModel.discardPilePosition : BaccaratViewModel.cardsPosition[cardIndex]))
+            //.position(card.cardPosition == CardsPositions.onShoeStack ? BaccaratViewModel.shoeStackPosition : (card.cardPosition == CardsPositions.onDiscardPile ? BaccaratViewModel.discardPilePosition : BaccaratViewModel.cardsPosition[cardIndex]))
     }
 
 }
 
-
-//card.cardPosition == CardsPositions.onHand ? CGSize.zero : (
-    //card.cardPosition == CardsPositions.onShoeStack ? CGSize(width: BaccaratViewModel.shoeStackPosition.x, height:  BaccaratViewModel.shoeStackPosition.y) : CGSize(width: BaccaratViewModel.discardPilePosition.x, height: BaccaratViewModel.discardPilePosition.y))

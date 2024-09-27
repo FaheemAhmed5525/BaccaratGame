@@ -14,8 +14,11 @@ class BaccaratViewModel: ObservableObject {
     
     
     static var cardsPosition: [CGPoint] = [.zero, .zero, .zero, .zero, .zero, .zero]
+    static var isDefaultPositionSet = [false, false, false, false, false, false]
     static var discardPilePosition: CGPoint = .zero
+    static var isDiscardPositionSet = false
     static var shoeStackPosition: CGPoint = .zero
+    static var isShoeStackPositionSet = false
     
 //    // MARK: - animation
 //    func changeCardOffset() {
@@ -58,7 +61,14 @@ class BaccaratViewModel: ObservableObject {
         game.changeBettingAmount(change: change)
     }
     
+    /// This func returns updated valued of BettingAmount
+    func getBettingAmount()-> Int {
+        return game.bettingAmount
+    }
     
+    func stackTapped(playerIndex: Int, bettingStack: betStacks) {
+        game.stackTapped(playerIndex: playerIndex, bettingStack: bettingStack)
+    }
     
     // image names of cards to be presend to the user
     @Published var playerCard1 = Card()

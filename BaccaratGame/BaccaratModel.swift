@@ -29,7 +29,7 @@ struct BaccaratModel {
     
     
     mutating func changeBettingAmount(change: Int) {
-        if (bettingAmount + change) > 20 {
+        if (bettingAmount + change) > 20 || change > 0 {
             bettingAmount += change
         }
     }

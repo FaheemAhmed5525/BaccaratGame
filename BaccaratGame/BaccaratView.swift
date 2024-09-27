@@ -63,7 +63,7 @@ struct BaccaratView: View {
                                 ChipStackView(width: width/2, height: height/8)
                                 
                                 //Betting Amount Label
-                                Text("Betting Amount: \(gameView.game.bettingAmount)")
+                                Text("Betting Amount: \(bettingAmount)")
                                 
                                 
                                 HStack {
@@ -169,31 +169,52 @@ struct BaccaratView: View {
                     //for Player 1
                     BankerAreaView(forPlayer: 1, center: arcCenter, radius: bankerArcRadius, startAngle: .degrees(30), endAngle: .degrees(55))
                         .onTapGesture {
-                            gameView.stackTapped(playerIndex: 3, bettingStack: betStacks.tie)
+                            gameView.stackTapped(playerIndex: 1, bettingStack: betStacks.banker)
                         }
                     
                     //for Player 2
                     BankerAreaView(forPlayer: 2, center: arcCenter, radius: bankerArcRadius, startAngle: .degrees(60), endAngle: .degrees(85))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 2, bettingStack: betStacks.banker)
+                        }
                     
                     //for Player 3
                     BankerAreaView(forPlayer: 3, center: arcCenter, radius: bankerArcRadius, startAngle: .degrees(95), endAngle: .degrees(120))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 3, bettingStack: betStacks.banker)
+                        }
                     
                     //for Player 4
                     BankerAreaView(forPlayer: 4, center: arcCenter, radius: bankerArcRadius, startAngle: .degrees(125), endAngle: .degrees(150))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 4, bettingStack: betStacks.banker)
+                        }
                     
                     //Player betting are
                     let playerArcRadius = CGFloat(height)
                     //for Player 1
                     PlayerAreaView(forPlayer: 1, center: arcCenter, radius: playerArcRadius, startAngle: .degrees(30), endAngle: .degrees(55))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 1, bettingStack: betStacks.player)
+                        }
                     
                     //for Player 2
                     PlayerAreaView(forPlayer: 2, center: arcCenter, radius: playerArcRadius, startAngle: .degrees(60), endAngle: .degrees(85))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 2, bettingStack: betStacks.player)
+                        }
                     
                     //for Player 3
                     PlayerAreaView(forPlayer: 3, center: arcCenter, radius: playerArcRadius, startAngle: .degrees(95), endAngle: .degrees(120))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 3, bettingStack: betStacks.player)
+                        }
                     
                     //for Player 4
                     PlayerAreaView(forPlayer: 4, center: arcCenter, radius: playerArcRadius, startAngle: .degrees(125), endAngle: .degrees(150))
+                        .onTapGesture {
+                            gameView.stackTapped(playerIndex: 4, bettingStack: betStacks.player)
+                        }
  
                 }
                     .frame(width: width, height: height)

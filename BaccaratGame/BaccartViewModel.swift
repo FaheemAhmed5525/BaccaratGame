@@ -59,15 +59,18 @@ class BaccaratViewModel: ObservableObject {
     /// - Parameter change: amount of change( positive or negative
     func changeBettingAmount(_ change: Int) {
         game.changeBettingAmount(change: change)
+        print("changing bettingAmount with: \(change)")
     }
     
     /// This func returns updated valued of BettingAmount
     func getBettingAmount()-> Int {
+        print("getting bettingAmount value: \(game.bettingAmount)")
         return game.bettingAmount
     }
     
     func stackTapped(playerIndex: Int, bettingStack: betStacks) {
         game.stackTapped(playerIndex: playerIndex, bettingStack: bettingStack)
+        print("Stack tapped with index: \(playerIndex) and betting Stack\(bettingStack == betStacks.tie ? "Tie" : (bettingStack == betStacks.banker ? "Banker" : "Player" ))")
     }
     
     // image names of cards to be presend to the user

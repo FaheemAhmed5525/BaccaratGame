@@ -87,12 +87,7 @@ struct BaccaratModel {
                         bettingAmount = players[selectedPlayerIndex].betOnPlayer
                         
                     }
-                    
-                    
-                    
                 }
-                
-                
             }
             
             // another closed stack is taped

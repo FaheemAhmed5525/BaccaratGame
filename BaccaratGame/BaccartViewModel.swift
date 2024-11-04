@@ -10,7 +10,17 @@ import SwiftUI
 
 class BaccaratViewModel: ObservableObject {
     
-    var game = BaccaratModel()
+    @Published var game = BaccaratModel()
+    
+    // image names of cards to be presend to the user
+    @Published var playerCard1 = Card()
+    @Published var playerCard2 = Card()
+    @Published var playerCard3 = Card()
+    
+    @Published var bankerCard1 = Card()
+    @Published var bankerCard2 = Card()
+    @Published var bankerCard3 = Card()
+    
     
     
     static var cardsPosition: [CGPoint] = [.zero, .zero, .zero, .zero, .zero, .zero]
@@ -20,28 +30,7 @@ class BaccaratViewModel: ObservableObject {
     static var shoeStackPosition: CGPoint = .zero
     static var isShoeStackPositionSet = false
     
-//    // MARK: - animation
-//    func changeCardOffset() {
-//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
-//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
-//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
-//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
-//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
-//        BaccaratViewModel.game.atHandCard[0].cardPosition = CardsPositions.onHand
-//        
-//    }
-    
-//    @State private var offset: CGSize = .zero
-//    public var Offset: CGSize {
-//        get {
-//            return offset
-//        }
-//        set {
-//            offset = newValue
-//        }
-//    }
-//    
-//
+
     
     func drawCards() {
         game.drawCards()
@@ -72,16 +61,6 @@ class BaccaratViewModel: ObservableObject {
         game.stackTapped(playerIndex: playerIndex, bettingStack: bettingStack)
         print("Stack tapped with index: \(playerIndex) and betting Stack\(bettingStack == betStacks.tie ? "Tie" : (bettingStack == betStacks.banker ? "Banker" : "Player" ))")
     }
-    
-    // image names of cards to be presend to the user
-    @Published var playerCard1 = Card()
-    @Published var playerCard2 = Card()
-    @Published var playerCard3 = Card()
-    
-    @Published var bankerCard1 = Card()
-    @Published var bankerCard2 = Card()
-    @Published var bankerCard3 = Card()
-    
     
     
     // func updatePositionToHands change the position from shoe stack to the Hand

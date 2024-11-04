@@ -127,9 +127,7 @@ struct BaccaratModel {
     }
     
     
-    mutating func drawCards() {
-        print("drawing cards")
-        
+    mutating func drawFirstHandCards() {
         //get a unused card
         //place first card on player hand
         atHandCard[0] = drawNewCard()
@@ -154,39 +152,83 @@ struct BaccaratModel {
         //place second card on banker hand
         atHandCard[4] = drawNewCard()
         atHandCard[4].cardPosition = .onHand
-        
-        
-        print("Player Card 1: \(atHandCard[0].cardValue)")
-        print("Player Card 2: \(atHandCard[1].cardValue)")
-        print("Player Card 3: \(atHandCard[2].cardValue)")
-        print("Banker Card 1: \(atHandCard[3].cardValue)")
-        print("Banker Card 2: \(atHandCard[4].cardValue)")
-        print("Banker Card 3: \(atHandCard[5].cardValue)")
-        
-        
-        
-        dealCards()
     }
     
-    /// draw card is called to draw a new card for cardShoe
-    mutating func drawNewCard()-> Card {
+    func checkCards() -> DealResult {
         
-        var randomNum = Int.random(in: 1...52)
+        let playerTotal: Int = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13)) % 10
+        let bankerTotal: Int = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13)) % 10
         
-        //get a unused card
-        while card[randomNum] == true {
-            print("Number failed: \(randomNum)")
-            randomNum = Int.random(in: 1...52)
+        //if the care is tie
+        if playerTotal == bankerTotal {
+            handleTie()
+            print("Banker total: \(bankerTotal)")
+            print("Player total: \(playerTotal)")
+            return DealResult.tie;
+        }
+        else if playerTotal == 8 || playerTotal == 9 {
+            if playerTotal > bankerTotal {
+                handlePlayerWin()
+                return DealResult.palyerWin;
+            }
+            
+        }
+        else if bankerTotal == 8 || bankerTotal == 9 {
+            if bankerTotal > playerTotal {
+                handleBankerWin()
+                return DealResult.bankerWin
+            }
         }
         
-        //place first card on player hand
-        card[randomNum] = true
+        return DealResult.needAnotherCard;
         
-        
-        return Card(cardValue: randomNum, cardState: CardsStates.faceHidden)
     }
-    
-    
+    mutating func dealAgain() {
+        
+        var playerTotal: Int = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13)) % 10
+        var bankerTotal: Int = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13)) % 10
+        
+        if playerTotal <= 5 {
+            
+            //draws a third card
+            atHandCard[2] = drawNewCard()
+            atHandCard[2].cardPosition = .onHand
+            playerTotal = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13) + (atHandCard[2].cardValue) % 13) % 10
+            
+        }
+        let playerThirdCard = ((atHandCard[2].cardValue) % 13) % 10
+        
+        //Condition when banker draws third card
+        if (bankerTotal >= 0 && bankerTotal <= 2) ||
+            (bankerTotal == 3 && playerTotal != 8 ) ||
+            (bankerTotal == 4 && (playerThirdCard >= 2 && playerThirdCard <= 7)) ||
+            (bankerTotal == 5 && (playerThirdCard >= 4 && playerThirdCard <= 7)) ||
+            (bankerTotal == 6 && (playerThirdCard == 6 || playerThirdCard == 7)) {
+            
+            atHandCard[5] = drawNewCard()
+            atHandCard[5].cardPosition = .onHand
+            
+            bankerTotal = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13) + (atHandCard[5].cardValue % 13)) % 10
+        }
+        
+//        //if the case is tie
+//        if playerTotal == bankerTotal {
+//            handleTie()
+//            
+//        }
+//        // player won
+//        else if playerTotal > bankerTotal {
+//            handlePlayerWin()
+//            
+//        }
+//        // banker won
+//        else {
+//            handleBankerWin()
+//        }
+//        
+//        
+//        return DealResult.tie;
+    }
     
     
     
@@ -255,10 +297,30 @@ struct BaccaratModel {
         
     }
     
+    
+    /// draw card is called to draw a new card for cardShoe
+    mutating func drawNewCard()-> Card {
+        
+        var randomNum = Int.random(in: 1...52)
+        
+        //get a unused card
+        while card[randomNum] == true {
+            print("Number failed: \(randomNum)")
+            randomNum = Int.random(in: 1...52)
+        }
+        
+        //place first card on player hand
+        card[randomNum] = true
+        
+        
+        return Card(cardValue: randomNum, cardState: CardsStates.faceHidden)
+    }
+
+    
     // Clear the handscard
     mutating func clearHands() {
         for index in 0..<6 {
-            atHandCard[0] = emptyCard
+            atHandCard[index] = emptyCard
         }
         
     }
@@ -279,4 +341,12 @@ struct BaccaratModel {
         print("Banker won the game")
         
     }
+}
+
+
+enum DealResult {
+    case palyerWin
+    case bankerWin
+    case tie
+    case needAnotherCard
 }

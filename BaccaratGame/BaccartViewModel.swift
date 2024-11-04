@@ -33,11 +33,60 @@ class BaccaratViewModel: ObservableObject {
 
     
     func drawCards() {
-        game.drawCards()
-        //updateCardImage()
-        drawToHands()
+////        game.drawCards()
+////        updateCardImage()
+////        drawToHands()
+//        
+//        print("drawing cards")
+//        
+//        //get a unused card
+//        //place first card on player hand
+//        game.atHandCard[0] = game.drawNewCard()
+//        game.atHandCard[0].cardPosition = .onHand
+//        
+//        
+//        //get a unused card
+//        //place first card on player hand
+//        game.atHandCard[1] = game.drawNewCard()
+//        game.atHandCard[1].cardPosition = .onHand
+//        
+////        //get a empty card
+////        //place third card on player hand
+////        atHandCard[3] = Card()
+//        
+//        //get a unused card
+//        //place second card on banker hand
+//        game.atHandCard[3] = game.drawNewCard()
+//        game.atHandCard[3].cardPosition = .onHand
+//        
+//        //get a unused card
+//        //place second card on banker hand
+//        game.atHandCard[4] = game.drawNewCard()
+//        game.atHandCard[4].cardPosition = .onHand
+//        
+//        
+//        
+//        
         
+        print("Player Card 1: \(game.atHandCard[0].cardValue)");
+        print("Player Card 2: \(game.atHandCard[1].cardValue)");
+        print("Player Card 3: \(game.atHandCard[2].cardValue)");
+        print("Banker Card 1: \(game.atHandCard[3].cardValue)");
+        print("Banker Card 2: \(game.atHandCard[4].cardValue)");
+        print("Banker Card 3: \(game.atHandCard[5].cardValue)");
+        
+        
+        playerCard1 = game.atHandCard[0];
+        playerCard1 = game.atHandCard[1];
+        playerCard1 = game.atHandCard[3];
+        playerCard1 = game.atHandCard[4];
+        
+        var result = game.checkCards();
+        
+        game.dealCards();
     }
+    
+    
     
     // func to clear the banker and player card to discardpile for new bet
     func clearHands() {

@@ -169,7 +169,7 @@ struct BaccaratModel {
         else if playerTotal == 8 || playerTotal == 9 {
             if playerTotal > bankerTotal {
                 handlePlayerWin()
-                return DealResult.palyerWin;
+                return DealResult.playerWin;
             }
             
         }
@@ -181,9 +181,10 @@ struct BaccaratModel {
         }
         
         return DealResult.needAnotherCard;
-        
     }
-    mutating func dealAgain() {
+    
+    
+    mutating func dealAgain() -> DealResult {
         
         var playerTotal: Int = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13)) % 10
         var bankerTotal: Int = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13)) % 10
@@ -194,8 +195,8 @@ struct BaccaratModel {
             atHandCard[2] = drawNewCard()
             atHandCard[2].cardPosition = .onHand
             playerTotal = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13) + (atHandCard[2].cardValue) % 13) % 10
-            
         }
+        
         let playerThirdCard = ((atHandCard[2].cardValue) % 13) % 10
         
         //Condition when banker draws third card
@@ -211,23 +212,21 @@ struct BaccaratModel {
             bankerTotal = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13) + (atHandCard[5].cardValue % 13)) % 10
         }
         
-//        //if the case is tie
-//        if playerTotal == bankerTotal {
-//            handleTie()
-//            
-//        }
-//        // player won
-//        else if playerTotal > bankerTotal {
-//            handlePlayerWin()
-//            
-//        }
-//        // banker won
-//        else {
-//            handleBankerWin()
-//        }
-//        
-//        
-//        return DealResult.tie;
+        //if the case is tie
+        if playerTotal == bankerTotal {
+            return DealResult.tie
+            
+        }
+        // player won
+        else if playerTotal > bankerTotal {
+            return DealResult.playerWin
+            
+        }
+        // banker won
+        else {
+            return DealResult.bankerWin
+        }
+    
     }
     
     
@@ -345,8 +344,9 @@ struct BaccaratModel {
 
 
 enum DealResult {
-    case palyerWin
+    case playerWin
     case bankerWin
     case tie
     case needAnotherCard
+    case wait
 }

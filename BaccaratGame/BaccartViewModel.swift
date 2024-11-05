@@ -21,7 +21,7 @@ class BaccaratViewModel: ObservableObject {
     @Published var bankerCard2 = Card()
     @Published var bankerCard3 = Card()
     
-    
+    @Published var gameResult = DealResult.needAnotherCard;
     
     static var cardsPosition: [CGPoint] = [.zero, .zero, .zero, .zero, .zero, .zero]
     static var isDefaultPositionSet = [false, false, false, false, false, false]
@@ -30,15 +30,17 @@ class BaccaratViewModel: ObservableObject {
     static var shoeStackPosition: CGPoint = .zero
     static var isShoeStackPositionSet = false
     
+    var playersBankroll: Array<Int> = []
+    
 
     
     func drawCards() {
-////        game.drawCards()
-////        updateCardImage()
-////        drawToHands()
-//        
-//        print("drawing cards")
-//        
+//        game.drawCards()
+//        updateCardImage()
+//        drawToHands()
+        
+        print("drawing cards")
+        game.drawFirstHandCards();
 //        //get a unused card
 //        //place first card on player hand
 //        game.atHandCard[0] = game.drawNewCard()
@@ -64,9 +66,26 @@ class BaccaratViewModel: ObservableObject {
 //        game.atHandCard[4] = game.drawNewCard()
 //        game.atHandCard[4].cardPosition = .onHand
 //        
-//        
-//        
-//        
+    
+        
+        playerCard1 = game.atHandCard[0];
+        playerCard2 = game.atHandCard[1];
+        bankerCard1 = game.atHandCard[3];
+        bankerCard2 = game.atHandCard[4];
+        
+        let result = game.checkCards();
+        
+        if result != DealResult.needAnotherCard {
+            gameResult = result;
+            print("------------Game State: \(result)")
+        }
+        else {
+            gameResult = game.dealAgain()
+            playerCard3 = game.atHandCard[2]
+            bankerCard3 = game.atHandCard[5]
+            print("++++++++++++Game State: \(gameResult)")
+        }
+        
         
         print("Player Card 1: \(game.atHandCard[0].cardValue)");
         print("Player Card 2: \(game.atHandCard[1].cardValue)");
@@ -75,15 +94,6 @@ class BaccaratViewModel: ObservableObject {
         print("Banker Card 2: \(game.atHandCard[4].cardValue)");
         print("Banker Card 3: \(game.atHandCard[5].cardValue)");
         
-        
-        playerCard1 = game.atHandCard[0];
-        playerCard1 = game.atHandCard[1];
-        playerCard1 = game.atHandCard[3];
-        playerCard1 = game.atHandCard[4];
-        
-        var result = game.checkCards();
-        
-        game.dealCards();
     }
     
     
@@ -134,6 +144,20 @@ class BaccaratViewModel: ObservableObject {
         bankerCard3 = game.atHandCard[5]
     }
     
-    
+    func createResultString() -> String {
+        var result = "";
+        if gameResult == DealResult.tie {
+            result = "It tie! \n"
+            game.players.forEach { player in
+                
+            }
+        }
+//        let resultString = "\(gameResult == DealResult.bankerWin ?
+//        "Banker" :
+//        gameResult == DealResult.playerWin ?
+//        "Player" :
+//        "Its Tie.") "
+        return result;
+    }
     
 }

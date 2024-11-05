@@ -335,14 +335,14 @@ struct BaccaratView: View {
             }
         }
         
-        if gameView.playerCard1.cardValue != 0 {
+        if gameView.playerCard3.cardValue != 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
                 withAnimation {
                     cardsOffset[2] = CGSize(width: 0, height: 0);
                 }
             }
         }
-        if gameView.playerCard1.cardValue != 0 {
+        if gameView.bankerCard3.cardValue != 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
                 withAnimation {
                     cardsOffset[5] = CGSize(width: 0, height: 0);

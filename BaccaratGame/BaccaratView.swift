@@ -21,6 +21,14 @@ struct BaccaratView: View {
     @State var bettingAmount = 0
     @State var cardsOpecity = 0.3
     
+    private var animationDuration: TimeInterval = 0.0
+    @State private var animationDurationOffset: TimeInterval = 0.0
+    var animationStartTime: TimeInterval {
+        animationDuration + animationDurationOffset
+    }
+    
+    
+    
     
     var body: some View {
                 
@@ -316,51 +324,55 @@ struct BaccaratView: View {
     func animateCardsToHands() {
         print("Moving to hands");
         
-        withAnimation {
-            cardsOffset[0] = CGSize(width: 0, height: 0);
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationStartTime) {
+            animationDurationOffset += 0.4
+            withAnimation {
+                cardsOffset[0] = CGSize(width: 0, height: 0);
+            }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationStartTime) {
+            animationDurationOffset += 0.4
             withAnimation {
                 cardsOffset[1] = CGSize(width: 0, height: 0);
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationStartTime) {
+            animationDurationOffset += 0.4
             withAnimation {
                 cardsOffset[3] = CGSize(width: 0, height: 0);
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationStartTime) {
+            animationDurationOffset += 0.4
             withAnimation {
                 cardsOffset[4] = CGSize(width: 0, height: 0);
             }
         }
         
+        
+        
         if gameView.playerCard3.cardValue != 0 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationStartTime) {
+                animationDurationOffset += 0.4
                 withAnimation {
                     cardsOffset[2] = CGSize(width: 0, height: 0);
                 }
             }
         }
         if gameView.bankerCard3.cardValue != 0 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationStartTime) {
+                animationDurationOffset += 0.4
                 withAnimation {
                     cardsOffset[5] = CGSize(width: 0, height: 0);
                 }
             }
         }
-//        cardsOffset[2] = CGSize(width: 0, height: 0);
-//        cardsOffset[3] = CGSize(width: 0, height: 0);
-//        cardsOffset[4] = CGSize(width: 0, height: 0);
-//        cardsOffset[5] = CGSize(width: 0, height: 0);
-
-//        cardsPosition[0] = CGPoint(x: 40, y: 40)//BaccaratViewModel.cardsPosition[0]
-//        cardsPosition[1] = BaccaratViewModel.cardsPosition[1]
-//        cardsPosition[2] = BaccaratViewModel.cardsPosition[2]
-//        cardsPosition[3] = BaccaratViewModel.cardsPosition[3]
-//        cardsPosition[4] = BaccaratViewModel.cardsPosition[4]
-//        cardsPosition[5] = BaccaratViewModel.cardsPosition[5]
-
+    
     }
     
     
@@ -631,3 +643,11 @@ struct CardView: View {
 
 }
 
+
+
+extension CGSize: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(width)
+        hasher.combine(height)
+    }
+}

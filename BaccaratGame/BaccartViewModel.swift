@@ -148,15 +148,49 @@ class BaccaratViewModel: ObservableObject {
         var result = "";
         if gameResult == DealResult.tie {
             result = "It tie! \n"
+            var index = 0;
             game.players.forEach { player in
-                
+                playersBankroll[index] = player.betOnPlayer
+                    if player.betOnPlayer > 0 {
+                        result += "Player at player \(index + 1) pushes \(player.betOnPlayer)"
+                }
+                index = 0;
+                if player.betOnPlayer > 0 {
+                    result += "Player at banker \(index + 1) pushes \(player.betOnPlayer)"
+                }
             }
         }
-//        let resultString = "\(gameResult == DealResult.bankerWin ?
-//        "Banker" :
-//        gameResult == DealResult.playerWin ?
-//        "Player" :
-//        "Its Tie.") "
+        else if gameResult == DealResult.bankerWin {
+            result = "Banker wins"
+            var index = 0;
+            game.players.forEach { player in
+                if player.betOnPlayer > 0 {
+                    result += "Player at player \(index + 1) pushes \(player.betOnPlayer)"
+                    index += 1;
+                }
+                index = 0;
+                if player.betOnBanker > 0 {
+                    result += "Player at banker \(index + 1) gets \(player.betOnPlayer) + \(player.betOnPlayer)"
+                    index += 1;
+                }
+            }
+        }
+        else if gameResult == DealResult.playerWin {
+            result = "Player wins"
+            var index = 0;
+            game.players.forEach { player in
+                if player.betOnPlayer > 0 {
+                    result += "Player at player \(index + 1) gets \(player.betOnPlayer) + \(player.betOnPlayer)"
+                    index += 1;
+                }
+                index = 0;
+                if player.betOnBanker > 0 {
+                    result += "Player at banker \(index + 1) pushes \(player.betOnPlayer)"
+                    index += 1;
+                }
+            }
+        }
+        
         return result;
     }
     

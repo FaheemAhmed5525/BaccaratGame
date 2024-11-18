@@ -30,43 +30,15 @@ class BaccaratViewModel: ObservableObject {
     static var shoeStackPosition: CGPoint = .zero
     static var isShoeStackPositionSet = false
     
-    var playersBankroll: Array<Int> = []
+    var playersBankroll: Array<Int> = [0, 0, 0, 0, 0, 0]
     
 
     
     func drawCards() {
-//        game.drawCards()
-//        updateCardImage()
-//        drawToHands()
         
         print("drawing cards")
         game.drawFirstHandCards();
-//        //get a unused card
-//        //place first card on player hand
-//        game.atHandCard[0] = game.drawNewCard()
-//        game.atHandCard[0].cardPosition = .onHand
-//        
-//        
-//        //get a unused card
-//        //place first card on player hand
-//        game.atHandCard[1] = game.drawNewCard()
-//        game.atHandCard[1].cardPosition = .onHand
-//        
-////        //get a empty card
-////        //place third card on player hand
-////        atHandCard[3] = Card()
-//        
-//        //get a unused card
-//        //place second card on banker hand
-//        game.atHandCard[3] = game.drawNewCard()
-//        game.atHandCard[3].cardPosition = .onHand
-//        
-//        //get a unused card
-//        //place second card on banker hand
-//        game.atHandCard[4] = game.drawNewCard()
-//        game.atHandCard[4].cardPosition = .onHand
-//        
-    
+ 
         
         playerCard1 = game.atHandCard[0];
         playerCard2 = game.atHandCard[1];
@@ -135,6 +107,8 @@ class BaccaratViewModel: ObservableObject {
     /// function UpdateCardImage assigns new new images to the image object to update UI
     func updateCardImage() {
         
+        
+        print("updating imges")
         playerCard1 = game.atHandCard[0]
         playerCard2 = game.atHandCard[1]
         playerCard3 = game.atHandCard[2]
@@ -144,54 +118,54 @@ class BaccaratViewModel: ObservableObject {
         bankerCard3 = game.atHandCard[5]
     }
     
-    func createResultString() -> String {
-        var result = "";
+    func getResultTitle() -> String {
         if gameResult == DealResult.tie {
-            result = "It tie! \n"
-            var index = 0;
-            game.players.forEach { player in
-                playersBankroll[index] = player.betOnPlayer
-                    if player.betOnPlayer > 0 {
-                        result += "Player at player \(index + 1) pushes \(player.betOnPlayer)"
-                }
-                index = 0;
-                if player.betOnPlayer > 0 {
-                    result += "Player at banker \(index + 1) pushes \(player.betOnPlayer)"
-                }
-            }
+            return "It tie! \n"
         }
         else if gameResult == DealResult.bankerWin {
-            result = "Banker wins"
-            var index = 0;
-            game.players.forEach { player in
+            return "Banker wins!"
+        }
+        else {
+            return "Player wins!"
+        }
+    }
+    
+    func getResultString() -> String {
+        var result = ""
+        
+        if gameResult == DealResult.tie {
+            for (index, player) in game.players.enumerated() {
                 if player.betOnPlayer > 0 {
-                    result += "Player at player \(index + 1) pushes \(player.betOnPlayer)"
-                    index += 1;
+                    result += "Player at player \(index + 1) pushes \(player.betOnPlayer).\n"
                 }
-                index = 0;
                 if player.betOnBanker > 0 {
-                    result += "Player at banker \(index + 1) gets \(player.betOnPlayer) + \(player.betOnPlayer)"
-                    index += 1;
+                    result += "Player at banker \(index + 1) pushes \(player.betOnBanker).\n"
                 }
             }
-        }
-        else if gameResult == DealResult.playerWin {
-            result = "Player wins"
-            var index = 0;
-            game.players.forEach { player in
+        } else if gameResult == DealResult.bankerWin {
+            for (index, player) in game.players.enumerated() {
                 if player.betOnPlayer > 0 {
-                    result += "Player at player \(index + 1) gets \(player.betOnPlayer) + \(player.betOnPlayer)"
-                    index += 1;
+                    result += "Player at player \(index + 1) pushes \(player.betOnPlayer).\n"
                 }
-                index = 0;
                 if player.betOnBanker > 0 {
-                    result += "Player at banker \(index + 1) pushes \(player.betOnPlayer)"
-                    index += 1;
+                    let payout = player.betOnBanker * 2
+                    result += "Player at banker \(index + 1) gets \(payout).\n"
+                }
+            }
+        } else if gameResult == DealResult.playerWin {
+            for (index, player) in game.players.enumerated() {
+                if player.betOnPlayer > 0 {
+                    let payout = player.betOnPlayer * 2
+                    result += "Player at player \(index + 1) gets \(payout).\n"
+                }
+                if player.betOnBanker > 0 {
+                    result += "Player at banker \(index + 1) pushes \(player.betOnBanker).\n"
                 }
             }
         }
         
-        return result;
+        return result
     }
+
     
 }

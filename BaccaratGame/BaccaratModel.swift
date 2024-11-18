@@ -15,7 +15,7 @@ struct BaccaratModel {
     var bettingAmount: Int = 0
     let emptyCard = Card()
     
-    var card: [Int: Bool] = Dictionary(uniqueKeysWithValues: (1...52).map {($0, false) })
+    var card: [Int: Bool] = Dictionary(uniqueKeysWithValues: (1...416).map {($0, false) })
     
     
     /// These var will be used for calculation of  resulat and also to show card on screen in Player's and Banker's hand
@@ -139,10 +139,7 @@ struct BaccaratModel {
         atHandCard[1] = drawNewCard()
         atHandCard[1].cardPosition = .onHand
         
-//        //get a empty card
-//        //place third card on player hand
-//        atHandCard[3] = Card()
-        
+
         //get a unused card
         //place second card on banker hand
         atHandCard[3] = drawNewCard()
@@ -156,8 +153,8 @@ struct BaccaratModel {
     
     func checkCards() -> DealResult {
         
-        let playerTotal: Int = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13)) % 10
-        let bankerTotal: Int = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13)) % 10
+        let playerTotal: Int = (((atHandCard[0].cardValue % 52) % 13) + ((atHandCard[1].cardValue % 52) % 13)) % 10
+        let bankerTotal: Int = (((atHandCard[3].cardValue % 52) % 13) + ((atHandCard[4].cardValue % 52) % 13)) % 10
         
         //if the care is tie
         if playerTotal == bankerTotal {
@@ -186,18 +183,18 @@ struct BaccaratModel {
     
     mutating func dealAgain() -> DealResult {
         
-        var playerTotal: Int = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13)) % 10
-        var bankerTotal: Int = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13)) % 10
+        var playerTotal: Int = (((atHandCard[0].cardValue % 52) % 13) + ((atHandCard[1].cardValue % 52) % 13)) % 10
+        var bankerTotal: Int = (((atHandCard[3].cardValue % 52) % 13) + ((atHandCard[4].cardValue % 52) % 13)) % 10
         
         if playerTotal <= 5 {
             
             //draws a third card
             atHandCard[2] = drawNewCard()
             atHandCard[2].cardPosition = .onHand
-            playerTotal = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13) + (atHandCard[2].cardValue) % 13) % 10
+            playerTotal = (((atHandCard[0].cardValue % 52) % 13) + ((atHandCard[1].cardValue % 52) % 13) + ((atHandCard[2].cardValue) % 52) % 13) % 10
         }
         
-        let playerThirdCard = ((atHandCard[2].cardValue) % 13) % 10
+        let playerThirdCard = (((atHandCard[2].cardValue) % 52) % 13) % 10
         
         //Condition when banker draws third card
         if (bankerTotal >= 0 && bankerTotal <= 2) ||
@@ -209,7 +206,7 @@ struct BaccaratModel {
             atHandCard[5] = drawNewCard()
             atHandCard[5].cardPosition = .onHand
             
-            bankerTotal = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13) + (atHandCard[5].cardValue % 13)) % 10
+            bankerTotal = (((atHandCard[3].cardValue % 52) % 13) + ((atHandCard[4].cardValue % 52) % 13) + ((atHandCard[5].cardValue % 52) % 13)) % 10
         }
         
         //if the case is tie
@@ -233,8 +230,8 @@ struct BaccaratModel {
     
     /// dealCards  function is executed after the initial cards are drawn
     mutating func dealCards() {
-        var playerTotal: Int = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13)) % 10
-        var bankerTotal: Int = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13)) % 10
+        var playerTotal: Int = (((atHandCard[0].cardValue % 52) % 13) + ((atHandCard[1].cardValue % 52) % 13)) % 10
+        var bankerTotal: Int = (((atHandCard[3].cardValue % 52) % 13) + ((atHandCard[4].cardValue % 52) % 13)) % 10
         
         //if the care is tie
         if playerTotal == bankerTotal {
@@ -261,10 +258,10 @@ struct BaccaratModel {
             //draws a third card
             atHandCard[2] = drawNewCard()
             atHandCard[2].cardPosition = .onHand
-            playerTotal = ((atHandCard[0].cardValue % 13) + (atHandCard[1].cardValue % 13) + (atHandCard[2].cardValue) % 13) % 10
+            playerTotal = (((atHandCard[0].cardValue % 52) % 13) + ((atHandCard[1].cardValue % 52) % 13) + ((atHandCard[2].cardValue) % 52) % 13) % 10
             
         }
-        let playerThirdCard = ((atHandCard[2].cardValue) % 13) % 10
+        let playerThirdCard = (((atHandCard[2].cardValue) % 52) % 13) % 10
         
         //Condition when banker draws third card
         if (bankerTotal >= 0 && bankerTotal <= 2) ||
@@ -276,7 +273,7 @@ struct BaccaratModel {
             atHandCard[5] = drawNewCard()
             atHandCard[5].cardPosition = .onHand
             
-            bankerTotal = ((atHandCard[3].cardValue % 13) + (atHandCard[4].cardValue % 13) + (atHandCard[5].cardValue % 13)) % 10
+            bankerTotal = (((atHandCard[3].cardValue % 52) % 13) + ((atHandCard[4].cardValue % 52) % 13) + ((atHandCard[5].cardValue % 52) % 13)) % 10
         }
         
         //if the case is tie
@@ -305,7 +302,8 @@ struct BaccaratModel {
         //get a unused card
         while card[randomNum] == true {
             print("Number failed: \(randomNum)")
-            randomNum = Int.random(in: 1...52)
+            randomNum = Int.random(in: 1...416)
+            randomNum %= 52
         }
         
         //place first card on player hand

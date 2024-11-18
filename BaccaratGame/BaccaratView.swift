@@ -19,6 +19,9 @@ struct BaccaratView: View {
     @State var shoeStackPosition: CGPoint = .zero
     @State var bettingAmount = 0
     @State var cardsOpecity = 0.0
+    @State var betsOnTie: [Int64] = [0, 0, 0, 0]
+    @State var betsOnBanker: [Int64] = [0, 0, 0, 0]
+    @State var betsOnPlayer: [Int64] = [0, 0, 0, 0]
     
     @State var isAnyStackOpen = false
     
@@ -34,40 +37,40 @@ struct BaccaratView: View {
     
     
     
-var body: some View {
-    ZStack {
-        // Background
-        GeometryReader { geometry in
-            ZStack {
-                // Solid background color
-                Rectangle()
-                    .foregroundColor(Color(UIColor.systemGray2))
-                    .edgesIgnoringSafeArea(.all)
-
-                // Background image
-                Image("background")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .clipped()
-            }
-//        }
-//        
-//        // Main content
-//        GeometryReader { geometry in
-            
-            let height = geometry.size.height
-            let width = height * 15 / 8
-            
-            ZStack {
-//                // Background rectangle
-//                RoundedRectangle(cornerRadius: 25.0)
-//                    .fill(.gray)
-//                    .frame(width: width, height: height)
-//                    .opacity(0.5)
-//                    .padding(.horizontal, 12)
-            
-            
+    var body: some View {
+        ZStack {
+            // Background
+            GeometryReader { geometry in
+                ZStack {
+                    // Solid background color
+                    Rectangle()
+                        .foregroundColor(Color(UIColor.systemGray2))
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    // Background image
+                    Image("background")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .clipped()
+                }
+                //        }
+                //
+                //        // Main content
+                //        GeometryReader { geometry in
+                
+                let height = geometry.size.height
+                let width = height * 15 / 8
+                
+                ZStack {
+                    //                // Background rectangle
+                    //                RoundedRectangle(cornerRadius: 25.0)
+                    //                    .fill(.gray)
+                    //                    .frame(width: width, height: height)
+                    //                    .opacity(0.5)
+                    //                    .padding(.horizontal, 12)
+                    
+                    
                     VStack(alignment: .center) {
                         HStack(alignment: .top) {
                             // DiscardPile
@@ -193,34 +196,62 @@ var body: some View {
                     let tieArcRadius = CGFloat(height * 5/6)
                     
                     // For player 1
-                    TieAreaView(forPlayer: 1, center: arcCenter, radius: tieArcRadius, startAngle: .degrees(30), endAngle: .degrees(55))
-                        .onTapGesture {
-                            isAnyStackOpen.toggle()
-                            gameView.stackTapped(playerIndex: 1, bettingStack: betStacks.tie)
-                        }
+                    TieAreaView(
+                        forPlayer: 1,
+                        center: arcCenter,
+                        radius: tieArcRadius,
+                        startAngle: .degrees(30),
+                        endAngle: .degrees(55),
+                        amount: betsOnTie[0]
+                    )
+                    .onTapGesture {
+                        isAnyStackOpen.toggle()
+                        gameView.stackTapped(playerIndex: 1, bettingStack: betStacks.tie)
+                    }
                     
-                    // for Payer 2
-                    TieAreaView(forPlayer: 2, center: arcCenter, radius: tieArcRadius, startAngle: .degrees(60), endAngle: .degrees(85))
-                        .onTapGesture {
-                            isAnyStackOpen.toggle()
-                            gameView.stackTapped(playerIndex: 2, bettingStack: betStacks.tie)
-                        }
+                    // For player 2
+                    TieAreaView(
+                        forPlayer: 2,
+                        center: arcCenter,
+                        radius: tieArcRadius,
+                        startAngle: .degrees(60),
+                        endAngle: .degrees(85),
+                        amount: betsOnTie[1]
+                    )
+                    .onTapGesture {
+                        isAnyStackOpen.toggle()
+                        gameView.stackTapped(playerIndex: 2, bettingStack: betStacks.tie)
+                    }
                     
                     
-                    // For Player 3
-                    TieAreaView(forPlayer: 3, center: arcCenter, radius: tieArcRadius, startAngle: .degrees(95), endAngle: .degrees(120))
-                        .onTapGesture {
-                            isAnyStackOpen.toggle()
-                            gameView.stackTapped(playerIndex: 3, bettingStack: betStacks.tie)
-                        }
+                    // For player 3
+                    TieAreaView(
+                        forPlayer: 3,
+                        center: arcCenter,
+                        radius: tieArcRadius,
+                        startAngle: .degrees(95),
+                        endAngle: .degrees(120),
+                        amount: betsOnTie[2]
+                    )
+                    .onTapGesture {
+                        isAnyStackOpen.toggle()
+                        gameView.stackTapped(playerIndex: 3, bettingStack: betStacks.tie)
+                    }
                     
                     
-                    // for Player 4
-                    TieAreaView(forPlayer: 4, center: arcCenter, radius: tieArcRadius, startAngle: .degrees(125), endAngle: .degrees(150))
-                        .onTapGesture {
-                            isAnyStackOpen.toggle()
-                            gameView.stackTapped(playerIndex: 4, bettingStack: betStacks.tie)
-                        }
+                    // For player 4
+                    TieAreaView(
+                        forPlayer: 4,
+                        center: arcCenter,
+                        radius: tieArcRadius,
+                        startAngle: .degrees(125),
+                        endAngle: .degrees(150),
+                        amount: betsOnTie[3]
+                    )
+                    .onTapGesture {
+                        isAnyStackOpen.toggle()
+                        gameView.stackTapped(playerIndex: 4, bettingStack: betStacks.tie)
+                    }
                     
                     // Banker betting area
                     let bankerArcRadius = CGFloat(height * 11/12)
@@ -333,7 +364,7 @@ var body: some View {
         .padding(8)
     }
     
-
+    
     func findOffsetToShoe() {
         print("--------Shoe Position: \(BaccaratViewModel.shoeStackPosition)")
         cardsOffset[0] = sizeBetweenPoints(from: BaccaratViewModel.shoeStackPosition, to: BaccaratViewModel.cardsPosition[0])
@@ -426,30 +457,32 @@ var body: some View {
             showResult = true
         }
     }
+    
+    
+    func animateCardsToDiscardPile() {
+        cardsOffset[0] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[0])
+        cardsOffset[1] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[1])
+        cardsOffset[2] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[2])
+        cardsOffset[3] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[3])
+        cardsOffset[4] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[4])
+        cardsOffset[5] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[5])
+        print("Animated to discard pile");
+        print("Card 0 offset\(cardsOffset[0])")
+        print("Card 1 offset\(cardsOffset[1])")
+        print("Card 2 offset\(cardsOffset[2])")
+        print("Card 3 offset\(cardsOffset[3])")
+        print("Card 4 offset\(cardsOffset[4])")
+        print("Card 5 offset\(cardsOffset[5])")
         
-        
-        func animateCardsToDiscardPile() {
-            cardsOffset[0] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[0])
-            cardsOffset[1] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[1])
-            cardsOffset[2] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[2])
-            cardsOffset[3] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[3])
-            cardsOffset[4] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[4])
-            cardsOffset[5] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[5])
-            print("Animated to discard pile");
-            print("Card 0 offset\(cardsOffset[0])")
-            print("Card 1 offset\(cardsOffset[1])")
-            print("Card 2 offset\(cardsOffset[2])")
-            print("Card 3 offset\(cardsOffset[3])")
-            print("Card 4 offset\(cardsOffset[4])")
-            print("Card 5 offset\(cardsOffset[5])")
-
-        }
-        
-        ///func updateBettingAmount updates the betting amount to show
-        func updateBettingAmount() {
-            bettingAmount = gameView.getBettingAmount()
-        }
     }
+    
+    ///func updateBettingAmount updates the betting amount to show
+    func updateBettingAmount() {
+        bettingAmount = gameView.getBettingAmount()
+    }
+    
+    
+}
     
 
 
@@ -539,6 +572,8 @@ struct ShoeStackView: View {
                 )
         }
     }
+ 
+
 }
 
 
@@ -591,22 +626,40 @@ struct TieAreaView: View {
     let radius: CGFloat
     let startAngle: Angle
     let endAngle: Angle
-
+    let amount: Int64
+    
     var body: some View {
-        Path { path in
-            path.addArc(
-                center: center,
-                radius: radius,
-                startAngle: startAngle,
-                endAngle: endAngle,
-                clockwise: false
-            )
+        ZStack {
+            Path { path in
+                path.addArc(
+                    center: center,
+                    radius: radius,
+                    startAngle: startAngle,
+                    endAngle: endAngle,
+                    clockwise: false
+                )
+            }
+            .strokedPath(StrokeStyle(lineCap: .round))
+            .stroke(Color(UIColor.systemGray4), lineWidth: 32)
+            .shadow(radius: 16)
+            
+            Text("$\(amount)")
+                .font(.headline)
+                .position(calculateTextPosition(
+                    center: center,
+                    radius: radius,
+                    startAngle: startAngle.degrees,
+                    endAngle: endAngle.degrees)
+                )
         }
-        .strokedPath(StrokeStyle(lineCap: .round))
-        .stroke(Color(UIColor.systemGray4), lineWidth: 32)
-        .shadow(radius: 16)
-
     }
+        func calculateTextPosition(center: CGPoint, radius: CGFloat, startAngle: Double, endAngle: Double) -> CGPoint {
+            let midAngle = (startAngle + endAngle) / 2
+            let radians = midAngle + .pi / 180
+            let x = center.x + radius * cos(radians)
+            let y = center.y - radius * sin(radians)
+            return CGPoint(x: x, y: y)
+        }
 }
 
 

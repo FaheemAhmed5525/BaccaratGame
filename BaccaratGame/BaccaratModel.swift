@@ -32,6 +32,7 @@ struct BaccaratModel {
         if (bettingAmount + change) > 20 || change > 0 {
             bettingAmount += change
         }
+        print("New amount: \(bettingAmount)")
     }
     
     
@@ -158,21 +159,21 @@ struct BaccaratModel {
         
         //if the care is tie
         if playerTotal == bankerTotal {
-            handleTie()
-            print("Banker total: \(bankerTotal)")
-            print("Player total: \(playerTotal)")
+//            handleTie()
+//            print("Banker total: \(bankerTotal)")
+//            print("Player total: \(playerTotal)")
             return DealResult.tie;
         }
         else if playerTotal == 8 || playerTotal == 9 {
             if playerTotal > bankerTotal {
-                handlePlayerWin()
+//                handlePlayerWin()
                 return DealResult.playerWin;
             }
             
         }
         else if bankerTotal == 8 || bankerTotal == 9 {
             if bankerTotal > playerTotal {
-                handleBankerWin()
+//                handleBankerWin()
                 return DealResult.bankerWin
             }
         }
@@ -235,21 +236,21 @@ struct BaccaratModel {
         
         //if the care is tie
         if playerTotal == bankerTotal {
-            handleTie()
-            print("Banker total: \(bankerTotal)")
-            print("Player total: \(playerTotal)")
+//            handleTie()
+//            print("Banker total: \(bankerTotal)")
+//            print("Player total: \(playerTotal)")
             return
         }
         else if playerTotal == 8 || playerTotal == 9 {
             if playerTotal > bankerTotal {
-                handlePlayerWin()
+//                handlePlayerWin()
                 return
             }
             
         }
         else if bankerTotal == 8 || bankerTotal == 9 {
             if bankerTotal > playerTotal {
-                handleBankerWin()
+//                handleBankerWin()
                 return
             }
         }
@@ -276,20 +277,20 @@ struct BaccaratModel {
             bankerTotal = (((atHandCard[3].cardValue % 52) % 13) + ((atHandCard[4].cardValue % 52) % 13) + ((atHandCard[5].cardValue % 52) % 13)) % 10
         }
         
-        //if the case is tie
-        if playerTotal == bankerTotal {
-            handleTie()
-            
-        }
-        // player won
-        else if playerTotal > bankerTotal {
-            handlePlayerWin()
-            
-        }
-        // banker won
-        else {
-            handleBankerWin()
-        }
+//        //if the case is tie
+//        if playerTotal == bankerTotal {
+//            handleTie()
+//            
+//        }
+//        // player won
+//        else if playerTotal > bankerTotal {
+//            handlePlayerWin()
+//            
+//        }
+//        // banker won
+//        else {
+//            handleBankerWin()
+//        }
         
     }
     
@@ -301,7 +302,7 @@ struct BaccaratModel {
         
         //get a unused card
         while card[randomNum] == true {
-            print("Number failed: \(randomNum)")
+//            print("Number failed: \(randomNum)")
             randomNum = Int.random(in: 1...416)
             randomNum %= 52
         }
@@ -322,22 +323,32 @@ struct BaccaratModel {
         
     }
     
-    
-    // handleTie is called where tie occurs while dealing cards
-    func handleTie() {
-        print("It tie!")
-    }
-    
-    // handlePlayerWin() is called where the player wins
-    func handlePlayerWin() {
-        print("Player won the game")
-    }
-    
-    // handleBankerWin() is called where the banker wins
-    func handleBankerWin() {
-        print("Banker won the game")
+    // Clear the bets of players
+    mutating func clearBets() {
+        for playerIndex in players.indices {
+            players[playerIndex].betOnTie = 0
+            players[playerIndex].betOnBanker = 0
+            players[playerIndex].betOnPlayer = 0
+        }
         
     }
+    
+    
+//    // handleTie is called where tie occurs while dealing cards
+//    func handleTie() {
+////        print("It tie!")
+//    }
+//    
+//    // handlePlayerWin() is called where the player wins
+//    func handlePlayerWin() {
+////        print("Player won the game")
+//    }
+//    
+//    // handleBankerWin() is called where the banker wins
+//    func handleBankerWin() {
+////        print("Banker won the game")
+//        
+//    }
 }
 
 

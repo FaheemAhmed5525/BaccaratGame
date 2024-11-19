@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DBB833E2CEC68230089F717 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DBB833D2CEC68230089F717 /* Launch Screen.storyboard */; };
 		0DCDAA8F2C9AEE4700F56A90 /* BaccaratGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAA8E2C9AEE4700F56A90 /* BaccaratGameApp.swift */; };
 		0DCDAA912C9AEE4700F56A90 /* BaccaratView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDAA902C9AEE4700F56A90 /* BaccaratView.swift */; };
 		0DCDAA932C9AEE4A00F56A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DCDAA922C9AEE4A00F56A90 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DBB833D2CEC68230089F717 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0DCDAA8B2C9AEE4700F56A90 /* BaccaratGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaccaratGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DCDAA8E2C9AEE4700F56A90 /* BaccaratGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratGameApp.swift; sourceTree = "<group>"; };
 		0DCDAA902C9AEE4700F56A90 /* BaccaratView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaccaratView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				0DCDAAB82C9AEFBF00F56A90 /* Player.swift */,
 				0DCDAB2A2C9AF1BE00F56A90 /* BaccaratModel.swift */,
 				0DCDAB2C2C9AF2A900F56A90 /* BaccartViewModel.swift */,
+				0DBB833D2CEC68230089F717 /* Launch Screen.storyboard */,
 			);
 			path = BaccaratGame;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DBB833E2CEC68230089F717 /* Launch Screen.storyboard in Resources */,
 				0DCDAA962C9AEE4A00F56A90 /* Preview Assets.xcassets in Resources */,
 				0DCDAA932C9AEE4A00F56A90 /* Assets.xcassets in Resources */,
 			);

@@ -24,15 +24,13 @@ struct BaccaratView: View {
     @State var betsOnPlayer: [Int64] = [0, 0, 0, 0]
     
     @State var isAnyStackOpen = false
+    @State var isShowingResult = false
     
     private var animationDuration: TimeInterval = 0.0
     @State private var animationDurationOffset: TimeInterval = 0.0
     var animationStartTime: TimeInterval {
         animationDuration + animationDurationOffset
     }
-    
-    @State var showResult = false
-    
     
     
     
@@ -84,7 +82,7 @@ struct BaccaratView: View {
                                 //coins box
                                 ChipStackView(width: width/2, height: height/8)
                                     .overlay {
-                                        if showResult {
+                                        if isShowingResult {
                                             VStack() {
                                                 Text(gameView.getResultTitle())
                                                     .font(.headline)
@@ -94,7 +92,7 @@ struct BaccaratView: View {
                                                     .font(.caption)
                                                     .foregroundColor(.black)
                                             }
-                                            .padding()
+                                            .padding(EdgeInsets(top: 32, leading: 32, bottom: 32, trailing: 32))
                                             .frame(minWidth: 420, minHeight: 125)
                                             .zIndex(3)
                                             .background(Color.white)
@@ -119,7 +117,14 @@ struct BaccaratView: View {
                                             animateCardsToHands();
                                         }
                                     }
-                                    //.disabled(isAnyStackOpen)
+                                    .disabled(isAnyStackOpen || isShowingResult)
+                                    .padding()
+                                    .frame(width: 72, height: 32)
+                                    .background(isAnyStackOpen || isShowingResult ? Color.gray: Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                                    .shadow(color: .black.opacity(0.4), radius: 6, x: 3, y: 3)
+                                    //.buttonStyle(CustomButtonStyle(isDisabled: isAnyStackOpen || isShowingResult))
                                     
                                     Button("Clear") {
                                         gameView.clearHands()
@@ -127,11 +132,19 @@ struct BaccaratView: View {
                                             animateCardsToDiscardPile()
                                             cardsOpecity = 0.0;
                                         }
-                                        showResult = false
+                                        gameView.clearBets()
+                                        isShowingResult = false
                                     }
+                                    .disabled(!isShowingResult)
+                                    .padding()
+                                    .frame(width: 72, height: 32)
+                                    .background(!isShowingResult ? Color.gray: Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                                    .shadow(color: .black.opacity(0.4), radius: 6, x: 3, y: 3)
+//                                    .buttonStyle(CustomButtonStyle(isDisabled: !isShowingResult))
                                 }
-                                .padding(.bottom, 0)
-                                .background(Color.cyan)
+                                
                             }
                             
                             // ShoeStack
@@ -201,8 +214,8 @@ struct BaccaratView: View {
                         center: arcCenter,
                         radius: tieArcRadius,
                         startAngle: .degrees(30),
-                        endAngle: .degrees(55),
-                        amount: betsOnTie[0]
+                        endAngle: .degrees(55)
+//                        amount: betsOnTie[0]
                     )
                     .onTapGesture {
                         isAnyStackOpen.toggle()
@@ -215,8 +228,8 @@ struct BaccaratView: View {
                         center: arcCenter,
                         radius: tieArcRadius,
                         startAngle: .degrees(60),
-                        endAngle: .degrees(85),
-                        amount: betsOnTie[1]
+                        endAngle: .degrees(85)
+//                        amount: betsOnTie[1]
                     )
                     .onTapGesture {
                         isAnyStackOpen.toggle()
@@ -230,8 +243,8 @@ struct BaccaratView: View {
                         center: arcCenter,
                         radius: tieArcRadius,
                         startAngle: .degrees(95),
-                        endAngle: .degrees(120),
-                        amount: betsOnTie[2]
+                        endAngle: .degrees(120)
+//                        amount: betsOnTie[2]
                     )
                     .onTapGesture {
                         isAnyStackOpen.toggle()
@@ -245,8 +258,8 @@ struct BaccaratView: View {
                         center: arcCenter,
                         radius: tieArcRadius,
                         startAngle: .degrees(125),
-                        endAngle: .degrees(150),
-                        amount: betsOnTie[3]
+                        endAngle: .degrees(150)
+//                        amount: betsOnTie[3]
                     )
                     .onTapGesture {
                         isAnyStackOpen.toggle()
@@ -289,7 +302,7 @@ struct BaccaratView: View {
                     PlayerAreaView(forPlayer: 1, center: arcCenter, radius: playerArcRadius, startAngle: .degrees(30), endAngle: .degrees(55))
                         .onTapGesture {
                             isAnyStackOpen.toggle()
-                            print("Checking stack open state \(isAnyStackOpen)");
+//                            print("Checking stack open state \(isAnyStackOpen)");
                             gameView.stackTapped(playerIndex: 1, bettingStack: betStacks.player)
                         }
                     
@@ -297,7 +310,7 @@ struct BaccaratView: View {
                     PlayerAreaView(forPlayer: 2, center: arcCenter, radius: playerArcRadius, startAngle: .degrees(60), endAngle: .degrees(85))
                         .onTapGesture {
                             isAnyStackOpen.toggle()
-                            print("Checking stack open state \(isAnyStackOpen)");
+//                            print("Checking stack open state \(isAnyStackOpen)");
                             gameView.stackTapped(playerIndex: 2, bettingStack: betStacks.player)
                         }
                     
@@ -305,7 +318,7 @@ struct BaccaratView: View {
                     PlayerAreaView(forPlayer: 3, center: arcCenter, radius: playerArcRadius, startAngle: .degrees(95), endAngle: .degrees(120))
                         .onTapGesture {
                             isAnyStackOpen.toggle()
-                            print("Checking stack open state \(isAnyStackOpen)");
+//                            print("Checking stack open state \(isAnyStackOpen)");
                             gameView.stackTapped(playerIndex: 3, bettingStack: betStacks.player)
                         }
                     
@@ -313,7 +326,7 @@ struct BaccaratView: View {
                     PlayerAreaView(forPlayer: 4, center: arcCenter, radius: playerArcRadius, startAngle: .degrees(125), endAngle: .degrees(150))
                         .onTapGesture {
                             isAnyStackOpen.toggle()
-                            print("Checking stack open state \(isAnyStackOpen)");
+//                            print("Checking stack open state \(isAnyStackOpen)");
                             gameView.stackTapped(playerIndex: 4, bettingStack: betStacks.player)
                         }
                     
@@ -337,8 +350,8 @@ struct BaccaratView: View {
                         amount: amount,
                         isEnabled: isAnyStackOpen
                     ) {
-                        updateBettingAmount()
                         gameView.changeBettingAmount(amount)
+                        updateBettingAmount()
                     }
                 }
                 Spacer()
@@ -354,8 +367,8 @@ struct BaccaratView: View {
                         amount: amount,
                         isEnabled: isAnyStackOpen
                     ) {
-                        updateBettingAmount()
                         gameView.changeBettingAmount(amount)
+                        updateBettingAmount()
                     }
                 }
                 Spacer()
@@ -366,20 +379,12 @@ struct BaccaratView: View {
     
     
     func findOffsetToShoe() {
-        print("--------Shoe Position: \(BaccaratViewModel.shoeStackPosition)")
         cardsOffset[0] = sizeBetweenPoints(from: BaccaratViewModel.shoeStackPosition, to: BaccaratViewModel.cardsPosition[0])
         cardsOffset[1] = sizeBetweenPoints(from: BaccaratViewModel.shoeStackPosition, to: BaccaratViewModel.cardsPosition[1])
         cardsOffset[2] = sizeBetweenPoints(from: BaccaratViewModel.shoeStackPosition, to: BaccaratViewModel.cardsPosition[2])
         cardsOffset[3] = sizeBetweenPoints(from: BaccaratViewModel.shoeStackPosition, to: BaccaratViewModel.cardsPosition[3])
         cardsOffset[4] = sizeBetweenPoints(from: BaccaratViewModel.shoeStackPosition, to: BaccaratViewModel.cardsPosition[4])
         cardsOffset[5] = sizeBetweenPoints(from: BaccaratViewModel.shoeStackPosition, to: BaccaratViewModel.cardsPosition[5])
-        print("moved to shoe");
-        print("Card 0 offset\(cardsOffset[0])")
-        print("Card 1 offset\(cardsOffset[1])")
-        print("Card 2 offset\(cardsOffset[2])")
-        print("Card 3 offset\(cardsOffset[3])")
-        print("Card 4 offset\(cardsOffset[4])")
-        print("Card 5 offset\(cardsOffset[5])")
         
     }
     func sizeBetweenPoints(from start: CGPoint, to end: CGPoint) -> CGSize {
@@ -390,7 +395,6 @@ struct BaccaratView: View {
     
     
     func animateCardsToHands() {
-        print("Moving to hands");
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             withAnimation {
@@ -454,7 +458,7 @@ struct BaccaratView: View {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.2) {
             
-            showResult = true
+            isShowingResult = true
         }
     }
     
@@ -466,19 +470,15 @@ struct BaccaratView: View {
         cardsOffset[3] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[3])
         cardsOffset[4] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[4])
         cardsOffset[5] = sizeBetweenPoints(from: BaccaratViewModel.discardPilePosition, to: BaccaratViewModel.cardsPosition[5])
-        print("Animated to discard pile");
-        print("Card 0 offset\(cardsOffset[0])")
-        print("Card 1 offset\(cardsOffset[1])")
-        print("Card 2 offset\(cardsOffset[2])")
-        print("Card 3 offset\(cardsOffset[3])")
-        print("Card 4 offset\(cardsOffset[4])")
-        print("Card 5 offset\(cardsOffset[5])")
-        
     }
     
     ///func updateBettingAmount updates the betting amount to show
     func updateBettingAmount() {
-        bettingAmount = gameView.getBettingAmount()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
+            withAnimation(.linear) {
+                bettingAmount = gameView.getBettingAmount()
+            }
+        }
     }
     
     
@@ -514,7 +514,6 @@ struct DiscardPile: View {
                         if !BaccaratViewModel.isDiscardPositionSet {
                             BaccaratViewModel.discardPilePosition = CGPoint(x: (box.frame(in: .global ).minX), y: box.frame(in: .global).minY)
                             BaccaratViewModel.isDiscardPositionSet = true
-                            print("Discard pile position set. Position: \(BaccaratViewModel.discardPilePosition)");
                         }
                     }
                 }
@@ -556,7 +555,6 @@ struct ShoeStackView: View {
                         if !BaccaratViewModel.isShoeStackPositionSet {
                             BaccaratViewModel.shoeStackPosition = CGPoint(x: (box.frame(in: .global).minX), y: box.frame(in: .global).minY)
                             BaccaratViewModel.isShoeStackPositionSet = true
-                            print("Setting default positions\(BaccaratViewModel.shoeStackPosition)");
                         }
                     }
                 }
@@ -626,40 +624,39 @@ struct TieAreaView: View {
     let radius: CGFloat
     let startAngle: Angle
     let endAngle: Angle
-    let amount: Int64
+//    let amount: Int64
     
     var body: some View {
-        ZStack {
-            Path { path in
-                path.addArc(
-                    center: center,
-                    radius: radius,
-                    startAngle: startAngle,
-                    endAngle: endAngle,
-                    clockwise: false
-                )
-            }
-            .strokedPath(StrokeStyle(lineCap: .round))
-            .stroke(Color(UIColor.systemGray4), lineWidth: 32)
-            .shadow(radius: 16)
-            
-            Text("$\(amount)")
-                .font(.headline)
-                .position(calculateTextPosition(
-                    center: center,
-                    radius: radius,
-                    startAngle: startAngle.degrees,
-                    endAngle: endAngle.degrees)
-                )
+        Path { path in
+            path.addArc(
+                center: center,
+                radius: radius,
+                startAngle: startAngle,
+                endAngle: endAngle,
+                clockwise: false
+            )
         }
+        .strokedPath(StrokeStyle(lineCap: .round))
+        .stroke(Color(UIColor.systemGray4), lineWidth: 32)
+        .shadow(radius: 16)
+//        ZStack {
+//            Text("$\(amount)")
+//                .font(.headline)
+//                .position(calculateTextPosition(
+//                    center: center,
+//                    radius: radius,
+//                    startAngle: startAngle.degrees,
+//                    endAngle: endAngle.degrees)
+//                )
+//        }
     }
-        func calculateTextPosition(center: CGPoint, radius: CGFloat, startAngle: Double, endAngle: Double) -> CGPoint {
-            let midAngle = (startAngle + endAngle) / 2
-            let radians = midAngle + .pi / 180
-            let x = center.x + radius * cos(radians)
-            let y = center.y - radius * sin(radians)
-            return CGPoint(x: x, y: y)
-        }
+//    func calculateTextPosition(center: CGPoint, radius: CGFloat, startAngle: Double, endAngle: Double) -> CGPoint {
+//        let midAngle = (startAngle + endAngle) / 2
+//        let radians = midAngle + .pi / 180
+//        let x = center.x + radius * cos(radians)
+//        let y = center.y - radius * sin(radians)
+//        return CGPoint(x: x, y: y)
+//    }
 }
 
 
@@ -775,3 +772,22 @@ struct BettingButton: View {
         .opacity(isEnabled ? 1 : 0.6)
     }
 }
+
+
+
+
+//struct CustomButtonStyle: ButtonStyle {
+//    let isDisabled: Bool
+//    
+//    func makeBody(configuration: Configuration) -> some View {
+//        configuration.label
+//            .padding()
+//            .frame(width: 72, height: 32)
+//            .background(isDisabled ? Color.gray: Color.blue)
+//            .foregroundColor(.white)
+//            .cornerRadius(8)
+//            .shadow(color: .black.opacity(0.4), radius: 6, x: 3, y: 3)
+//            .scaleEffect(configuration.isPressed ? 0.90: 1.0)
+//            .animation(.easeInOut(duration: 0.12), value: configuration.isPressed)
+//    }
+//}

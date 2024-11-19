@@ -36,7 +36,7 @@ class BaccaratViewModel: ObservableObject {
     
     func drawCards() {
         
-        print("drawing cards")
+//        print("drawing cards")
         game.drawFirstHandCards();
  
         
@@ -49,22 +49,22 @@ class BaccaratViewModel: ObservableObject {
         
         if result != DealResult.needAnotherCard {
             gameResult = result;
-            print("------------Game State: \(result)")
+//            print("------------Game State: \(result)")
         }
         else {
             gameResult = game.dealAgain()
             playerCard3 = game.atHandCard[2]
             bankerCard3 = game.atHandCard[5]
-            print("++++++++++++Game State: \(gameResult)")
+//            print("++++++++++++Game State: \(gameResult)")
         }
         
         
-        print("Player Card 1: \(game.atHandCard[0].cardValue)");
-        print("Player Card 2: \(game.atHandCard[1].cardValue)");
-        print("Player Card 3: \(game.atHandCard[2].cardValue)");
-        print("Banker Card 1: \(game.atHandCard[3].cardValue)");
-        print("Banker Card 2: \(game.atHandCard[4].cardValue)");
-        print("Banker Card 3: \(game.atHandCard[5].cardValue)");
+//        print("Player Card 1: \(game.atHandCard[0].cardValue)");
+//        print("Player Card 2: \(game.atHandCard[1].cardValue)");
+//        print("Player Card 3: \(game.atHandCard[2].cardValue)");
+//        print("Banker Card 1: \(game.atHandCard[3].cardValue)");
+//        print("Banker Card 2: \(game.atHandCard[4].cardValue)");
+//        print("Banker Card 3: \(game.atHandCard[5].cardValue)");
         
     }
     
@@ -75,22 +75,26 @@ class BaccaratViewModel: ObservableObject {
         game.clearHands()
     }
     
+    func clearBets() {
+        game.clearBets()
+    }
+    
     /// This function change the betting amout
     /// - Parameter change: amount of change( positive or negative
     func changeBettingAmount(_ change: Int) {
         game.changeBettingAmount(change: change)
-        print("changing bettingAmount with: \(change)")
+//        print("changing bettingAmount with: \(change)")
     }
     
     /// This func returns updated valued of BettingAmount
     func getBettingAmount()-> Int {
-        print("getting bettingAmount value: \(game.bettingAmount)")
+//        print("getting bettingAmount value: \(game.bettingAmount)")
         return game.bettingAmount
     }
     
     func stackTapped(playerIndex: Int, bettingStack: betStacks) {
         game.stackTapped(playerIndex: playerIndex, bettingStack: bettingStack)
-        print("Stack tapped with index: \(playerIndex) and betting Stack\(bettingStack == betStacks.tie ? "Tie" : (bettingStack == betStacks.banker ? "Banker" : "Player" ))")
+//        print("Stack tapped with index: \(playerIndex) and betting Stack\(bettingStack == betStacks.tie ? "Tie" : (bettingStack == betStacks.banker ? "Banker" : "Player" ))")
     }
     
     
@@ -108,7 +112,7 @@ class BaccaratViewModel: ObservableObject {
     func updateCardImage() {
         
         
-        print("updating imges")
+//        print("updating imges")
         playerCard1 = game.atHandCard[0]
         playerCard2 = game.atHandCard[1]
         playerCard3 = game.atHandCard[2]
@@ -135,6 +139,10 @@ class BaccaratViewModel: ObservableObject {
         
         if gameResult == DealResult.tie {
             for (index, player) in game.players.enumerated() {
+                if player.betOnTie > 0 {
+                    let payout = player.betOnTie * 8
+                    result += "Player at tie \(index + 1) gets \(payout)"
+                }
                 if player.betOnPlayer > 0 {
                     result += "Player at player \(index + 1) pushes \(player.betOnPlayer).\n"
                 }
@@ -144,6 +152,9 @@ class BaccaratViewModel: ObservableObject {
             }
         } else if gameResult == DealResult.bankerWin {
             for (index, player) in game.players.enumerated() {
+                if player.betOnTie > 0 {
+                    result += "Player at tie \(index + 1) pushes \(player.betOnTie).\n"
+                }
                 if player.betOnPlayer > 0 {
                     result += "Player at player \(index + 1) pushes \(player.betOnPlayer).\n"
                 }
@@ -154,6 +165,9 @@ class BaccaratViewModel: ObservableObject {
             }
         } else if gameResult == DealResult.playerWin {
             for (index, player) in game.players.enumerated() {
+                if player.betOnTie > 0 {
+                    result += "Player at tie \(index + 1) pushes \(player.betOnTie).\n"
+                }
                 if player.betOnPlayer > 0 {
                     let payout = player.betOnPlayer * 2
                     result += "Player at player \(index + 1) gets \(payout).\n"
